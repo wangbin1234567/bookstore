@@ -221,7 +221,28 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/examination',
+    component: Layout,
+    redirect: "/examination/addTest",
+    name:"Examination",
+    meta: {
+      title: "考试管理",
+      icon: "skill"
+    },
+    children: [        
+          {
+            path: "addTest",
+            component: () => import("@/views/examination/addTest"),
+            meta: { title: "添加考试"}
+          },
+          {
+            path: "examList",
+            component: () => import("@/views/examination/examList"),
+            meta: { title:"试卷列表"}
+          }       
+    ]
+  },
   {
     path: '/tab',
     component: Layout,
