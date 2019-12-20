@@ -1,77 +1,57 @@
 import {getExam} from "@/api/examination.js"
 const state = {
-    data:{
-        subject_id:"",
-        exam_id:"",
-        title:"",
-        number:4,
-        start_time:"",
-        end_time:""
-    },
-    types: [{
-        value: '选项1',
-        label: '周考一'
-      }, {
-        value: '选项2',
-        label: '周考二'
-      }, {
-        value: '选项3',
-        label: '周考三'
-      }, {
-        value: '选项4',
-        label: '月考'
-      }],
-      course:[{
-        typevalue: '选项1',
-        label: 'javaScript上'
-    },
-    {
-        typevalue: '选项2',
-        label: 'javaScript下'
-    },
-    {
-        typevalue: '选项3',
-        label: '模块化开发'
-    },
-    {
-        typevalue: '选项4',
-        label: '移动端开发'
-    },
-    {
-        typevalue: '选项5',
-        label: 'node基础'
-    },
-    {
-        typevalue: '选项6',
-        label: '组件式开发'
-    },
-    {
-        typevalue: '选项7',
-        label: '渐进式开发'
-    },
-    {
-        typevalue: '选项8',
-        label: '项目实战'
-    },
-    {
-        typevalue: '选项9',
-        label: 'javaScript高级'
-    }]
+    questions_type_id:"",
+    questions_stem:"",
+    subject_id:"",//课程的id
+    exam_id:"",//类型id
+    user_id:"",//批卷人id
+    questions_answer:"",
+    title:"",//课程
+        // subject_id:"",//试卷名称
+        // exam_exam_id:"",//试卷类型
+        // title:"",//课程
+        // number:4,//题量 初始为4
+        // start_time:"",//开始时间
+        // end_time:"",//结束时间
 }
 
 const mutations = {
     updateExam(state,payload){
-      state.data=payload
+     window.console.log(state)
+     window.console.log(payload)
     },
-    setSubject(state,payload){
-
-    }
+    //修改试卷名称
+    // setSubject(state,payload){
+    //     state.subject_id=payload.subject_id
+    // },
+    //修改试卷类型
+    // setExam(state,payload){
+    //     state.exam_exam_id=payload.exam_exam_id
+    // },
+    //修改课程
+    // setTitle(state,payload){
+    //     state.title=payload.title
+    // },
+    //修改题量
+    // setNumber(state,payload){
+    //     state.number=payload.number
+    // },
+    //修改开始时间
+    // setStartTime(state,payload){
+    //     state.start_time=payload.start_time
+    // },
+    //修改结束时间
+    // setEndTime(state,payload){
+    //     state.end_time=payload.end_time
+    // }
 }
 
 const actions = {
    async getExam({commit},payload){
        window.console.log(payload)
+       window.console.log("-----------------")
        let res = await getExam(payload)
+       window.console.log("-----------------")
        window.console.log(res)
        commit("updateExam",res.data)
    }

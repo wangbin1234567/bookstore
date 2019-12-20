@@ -1,71 +1,98 @@
 <template>
     <div class="addtest-box">
         <el-container>
+            <!-- 公共头部 -->
             <el-header>
                 <PublicHeader :name="name" />
             </el-header>
             <el-main>
                 <div class="ant-layout-content">
                     <div class="ant-row">
+                        <!-- 试卷名称 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">试卷名称:</label>
                             </div>
                             <input type="text" id="title" class="ant-input" v-model="subject_id">                            
                         </div>
+                        <!-- 试卷类型 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">选择试卷类型:</label>
                             </div>
+
+                            <!-- 类型选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single" v-model="value" placeholder="">
+                                <el-select class="ant-select-selection-single" v-model="exam_id" placeholder="">
                                     <el-option 
                                         v-for="item in types"
-                                        :key="item.value"
-                                        :label="item.label"
-                                        :value="item.value"
+                                        :key="item.exam_name"
+                                        :label="item.exam_name"
+                                        :value="item.exam_name"
                                     ></el-option>
                                 </el-select>
                             </div>
+
                         </div>
+
+                        <!-- 课程 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">选择课程:</label>
                             </div>
+                            <!-- 课程选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single" v-model="typevalue" placeholder="">
+                                <el-select class="ant-select-selection-single" v-model="title" placeholder="">
                                     <el-option 
                                         v-for="item in course"
-                                        :key="item.typevalue"
-                                        :label="item.label"
-                                        :value="item.typevalue"></el-option>
+                                        :key="item.subject_text"
+                                        :label="item.subject_text"
+                                        :value="item.subject_text"></el-option>
                                 </el-select>
                             </div>
+
                         </div>
+
+                        <!-- 题量 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">设置题量:</label>
                             </div>
+                            <!-- 题目数量 -->
                             <div class="ant-form-item-control">
-                                 <el-input-number class="ant-input-number-input" v-model="number" controls-position="right" @change="handleChange" :min="1" :max="10"></el-input-number>
+                                 <el-input-number class="ant-input-number-input"  controls-position="right"  :min="1" :max="10"></el-input-number>
                             </div>
+
                         </div>
+
+                        <!-- 考试时间 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">考试时间:</label>
                             </div>
+                            <!-- 开始时间 -->
                             <div class="ant-form-item-control">
-                                <el-date-picker v-model="start_time"
+                                <el-date-picker 
                                     placeholder="开始时间">
                                 </el-date-picker>
+
+                                <!-- 分隔符 -->
                                 <span>-</span>
-                                 <el-date-picker v-model="end_time"
+
+                                <!-- 结束时间 -->
+                                 <el-date-picker 
                                     placeholder="结束时间">
                                 </el-date-picker>
+
                             </div>
+
                         </div>
-                        <div class="ant-form-item-control">
-                            <button class="ant-btn-primary" @click="createExam(subject_id,number,start_time,end_time)">创建试卷</button>
+
+                        <!-- 创建试卷按钮 -->
+                        <div class="ant-form-item">
+                            <div class="ant-form-item-control">
+                                <button class="ant-btn-primary" @click="createExam()">创建试卷</button>
+                            </div>
                         </div>
                     </div>                  
                 </div>
@@ -74,17 +101,24 @@
     </div>
 </template>
 <script>
+//引入头部组件
 import PublicHeader from "@/components/publicHeader/index"
-import {mapActions,mapState} from "vuex"
-import examination from '../../store/modules/examination';
+import {mapActions,mapState,mapMutations} from "vuex"
+// import examination from '../../store/modules/examination';
 export default {
     components:{
          PublicHeader
     },
     computed:{
          ...mapState({
-             types:state=>state.examination.types,
-             course:state=>state.examination.course
+             types:state=>state.examType.types,
+             course:state=>state.examSubject.course,
+            //  subject_id:state=>state.examination.subject_id,
+            //  exam_exam_id:state=>state.examination.exam_exam_id,
+            //  title:state=>state.examination.title,
+            //  number:state=>state.examination.number,
+            //  start_time:state=>state.examination.start_time,
+            //  end_time:state=>state.examination.end_time
          })
     },
     data(){
@@ -115,27 +149,52 @@ export default {
                     }
                 }]
         },
-        subject_id:"",
-        exam_id:"",
-        title:"",
-        number:4,
-        start_time:"",
-        end_time:"",
-        value:"",
-        typevalue:""
+        questions_type_id:"",
+        questions_stem:"",
+        subject_id:"",//课程的id
+        exam_id:"",//类型id
+        user_id:"",//批卷人id
+        questions_answer:"",
+        title:""//课程
         }
     },
     methods:{
         ...mapActions({
-            getExam:"examination/getExam"
+            getExam:"examination/getExam",
+            getExamType:"examType/getExamType",
+            getSubject:"examSubject/getSubject"
         }),
-        createExam(subject_id,number,start_time,end_time){
-            window.console.log(subject_id)
-            this.getExam(subject_id,number,start_time,end_time)
+        ...mapMutations({
+            // setSubject:"examination/setSubject",
+            // setExam:"examination/setExam",
+            // setTitle:"examination/setTitle",
+            // setNumber:"examination/setNumber",
+            // setStartTime:"examination/setStartTime",
+            // setEndTime:"examination/setEndTime"
+        }),
+        //点击创建试卷按钮
+        createExam(){
+            // this.setNumber(this.number)
+            // this.setSubject(this.subject_id)
+            // this.setExam(this.exam_id)
+            // this.setTitle(this.title)
+            // this.setStartTime(this.start_time)
+            // this.setEndTime(this.end_time)
+            let data={
+                questions_type_id:this. questions_type_id,
+                questions_stem:this.questions_stem,
+                subject_id:this.subject_id,
+                exam_id:this.exam_id,
+                user_id:this.user_id,
+                questions_answer:this.questions_answer,
+                title:this.title,
+            }
+            this.getExam(data)
         },
-        handleChange(value) {
-            console.log(value);
-        }
+    },
+    created(){
+        this.getExamType()
+        this.getSubject()
     }
 }
 </script>
@@ -182,9 +241,6 @@ export default {
     display: flex;
     align-items: center;
 }
-.ant-form-item-control .el-input__inner{
-    display: inline-block;
-}
 .ant-form-item-control span{
     width:24px;
     height:100%;
@@ -194,7 +250,7 @@ export default {
     line-height:39.2px;
 }
 .ant-select-selection-single{
-    width:30%;
+    width:35%;
     height:32px;
     background:#fff;
     border-radius: 4px;
@@ -214,18 +270,16 @@ export default {
 }
 
 .ant-input-number-input{
-    width:22%;
-    height:30px;
+    height:38px;
     background:#fff;
-    padding:0 11px;
 }
 .ant-btn-primary{
     height:32px;
-    padding: 0 40px!important;
-    border-radius: 4px!important;
-    border: 0!important;
-    font-size: 14px!important;
-    color: #fff!important;
-    background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+    padding: 0 40px;
+    border-radius: 4px;
+    border: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(-90deg,#4e75ff,#0139fd);
 }
 </style>
