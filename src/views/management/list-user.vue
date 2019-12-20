@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 style="padding: 10px 20px; margin-top: 10px;">添加用户</h2>
+    <h2 style="padding: 10px 20px; margin-top: 10px;">用户展示</h2>
   </div>
 </template>
 
