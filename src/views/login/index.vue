@@ -81,7 +81,6 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 
@@ -90,14 +89,20 @@ export default {
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (!value) {
         callback(new Error('Please enter the correct user name'))
       } else {
         callback()
       }
+      // if (!validUsername(value)) {
+      //   callback(new Error('Please enter the correct user name'))
+      // } else {
+      //   callback()
+      // }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
+      if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)
+      ) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
@@ -105,8 +110,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'chenmanjie',
+        password: 'Chenmanjie123!'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -169,17 +174,16 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+          try {
+            await this.$store.dispatch('user/login', this.loginForm)
+            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+          } catch (e) {
+
+          }
+          this.loading = false
         } else {
           console.log('error submit!!')
           return false
@@ -187,12 +191,14 @@ export default {
       })
     },
     getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== 'redirect') {
-          acc[cur] = query[cur]
-        }
-        return acc
-      }, {})
+      // return Object.keys(query).reduce((acc, cur) => {
+      //   if (cur !== 'redirect') {
+      //     acc[cur] = query[cur]
+      //   }
+      //   return acc
+      // }, {});
+      delete query.redirect
+      return query
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

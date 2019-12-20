@@ -272,7 +272,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/excel',
     component: Layout,
@@ -309,7 +308,122 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/questions',
+    component: Layout,
+    redirect: '/questions/add-questions',
+    alwaysShow: true,
+    name: 'Questions',
+    meta: { title: '试题管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-questions',
+        component: () => import('@/views/questions/add-questions'),
+        name: 'Addquestions',
+        meta: { title: '添加考试' }
+      },
+      {
+        path: 'classify-questions',
+        component: () => import('@/views/questions/classify-questions'),
+        name: 'classifyQuestions',
+        meta: { title: '考试分类' }
+      },
+      {
+        path: 'examine-questions',
+        component: () => import('@/views/questions/examine-questions'),
+        name: 'ExamineQuestions',
+        meta: { title: '查看试题' }
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/add-user',
+    alwaysShow: true,
+    name: 'User',
+    meta: { title: '用户管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-user',
+        component: () => import('@/views/user/add-user'),
+        name: 'Adduser',
+        meta: { title: '添加用户' }
+      },
+      {
+        path: 'exhibition-user',
+        component: () => import('@/views/user/exhibition-user'),
+        name: 'ExhibitionUser',
+        meta: { title: '用户展示' }
+      }
+    ]
+  },
+  {
+    path: '/exam',
+    component: Layout,
+    redirect: '/exam/add-exam',
+    alwaysShow: true,
+    name: 'Exam',
+    meta: { title: '考试管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-exam',
+        component: () => import('@/views/exam/add-exam'),
+        name: 'Addexam',
+        meta: { title: '添加考试' }
+      },
+      {
+        path: 'list-exam',
+        component: () => import('@/views/exam/list-exam'),
+        name: 'Listexam',
+        meta: { title: '试卷链表' }
+      }
+    ]
+  },
+  {
+    path: '/grade',
+    component: Layout,
+    redirect: '/grade/grade-management',
+    alwaysShow: true,
+    name: 'Grade',
+    meta: { title: '班级管理', icon: 'zip' },
+    children: [
+      {
+        path: 'grade-management ',
+        component: () => import('@/views/grade/grade-management'),
+        name: 'Grademanagement ',
+        meta: { title: '班级管理' }
+      },
+      {
+        path: 'classroom-questions',
+        component: () => import('@/views/grade/classroom-questions'),
+        name: 'Classroomquestions',
+        meta: { title: '教室管理' }
+      },
+      {
+        path: 'student-questions',
+        component: () => import('@/views/grade/student-questions'),
+        name: 'Studentquestions',
+        meta: { title: '学生管理' }
+      }
+    ]
+  },
+  {
+    path: '/over',
+    component: Layout,
+    redirect: '/over/approval-class',
+    alwaysShow: true,
+    name: 'Over',
+    meta: { title: '阅卷管理', icon: 'zip' },
+    children: [
+      {
+        path: 'approval-class',
+        component: () => import('@/views/over/approval-class'),
+        name: 'Approvalclass',
+        meta: { title: '待批班级' }
+      }
+    ]
+  },
   {
     path: '/zip',
     component: Layout,
