@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 
@@ -146,11 +147,15 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    ...mapActions({
+        userInfo:'user/userInfo'
+    }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
         if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
@@ -179,7 +184,9 @@ export default {
           this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
+            await this.userInfo()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            
           } catch (e) {
 
           }
