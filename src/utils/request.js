@@ -5,8 +5,12 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
+<<<<<<< HEAD
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   baseURL: 'http://169.254.191.222:7002',
+=======
+  baseURL: 'http://192.168.191.1:7002', // url = base url + request url
+>>>>>>> jyh
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 1000 // request timeout
 })
@@ -15,6 +19,10 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
+<<<<<<< HEAD
+=======
+
+>>>>>>> jyh
     if (getToken) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
