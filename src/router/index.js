@@ -83,7 +83,7 @@ export const constantRoutes = [
       }
     ]
   },
-   {
+  {
     path: '/grades',
     component: Layout,
     redirect: '/grades/grade',
@@ -124,8 +124,7 @@ export const constantRoutes = [
         meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
-  }, 
- 
+  },
   {
     path: '/guide',
     component: Layout,
@@ -190,7 +189,6 @@ export const asyncRoutes = [
           // if do not set roles, means: this page does not require permission
         }
       },
-    
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
@@ -202,7 +200,6 @@ export const asyncRoutes = [
       }
     ]
   },
- 
   {
     path: '/icon',
     component: Layout,
@@ -215,13 +212,11 @@ export const asyncRoutes = [
       }
     ]
   },
-
   /** when your routing map is too long, you can split it into small modules **/
   componentsRouter,
   chartsRouter,
   nestedRouter,
   tableRouter,
-
   {
     path: '/example',
     component: Layout,
@@ -253,7 +248,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/tab',
     component: Layout,
@@ -266,7 +260,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/error',
     component: Layout,
@@ -304,7 +297,6 @@ export const asyncRoutes = [
       }
     ]
   },
-<<<<<<< HEAD
   {
     path: '/excel',
     component: Layout,
@@ -369,10 +361,6 @@ export const asyncRoutes = [
       }
     ]
   },
-=======
-  
-
->>>>>>> jyh
   {
     path: '/zip',
     component: Layout,

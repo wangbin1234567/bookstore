@@ -81,11 +81,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import { mapActions } from "vuex"
-=======
 // import { validUsername } from '@/utils/validate'
->>>>>>> jyh
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 
@@ -94,10 +91,7 @@ export default {
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-<<<<<<< HEAD
-=======
       //验证
->>>>>>> jyh
       if (!value) {
         callback(new Error('Please enter the correct user name'))
       } else {
@@ -110,12 +104,8 @@ export default {
       // }
     }
     const validatePassword = (rule, value, callback) => {
-<<<<<<< HEAD
-      if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)
-      ) {
-=======
+    
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
->>>>>>> jyh
         callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
@@ -166,7 +156,7 @@ export default {
   },
   methods: {
     ...mapActions({
-        userInfo:'user/userInfo'
+        userInfoss:'user/userInfo'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -196,7 +186,7 @@ export default {
           this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfo()
+            await this.userInfoss()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {
