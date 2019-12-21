@@ -13,7 +13,7 @@
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">试卷名称:</label>
                             </div>
-                            <input type="text" id="title" class="ant-input" v-model="subject_id">                            
+                            <input type="text" id="title" class="ant-input" v-model="questions">                            
                         </div>
                         <!-- 试卷类型 -->
                         <div class="ant-form-item">
@@ -23,7 +23,7 @@
 
                             <!-- 类型选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single" v-model="exam_id" placeholder="">
+                                <el-select class="ant-select-selection-single" v-model="exam_exam_id" placeholder="">
                                     <el-option 
                                         v-for="item in types"
                                         :key="item.exam_name"
@@ -72,7 +72,7 @@
                             </div>
                             <!-- 开始时间 -->
                             <div class="ant-form-item-control">
-                                <el-date-picker 
+                                <el-date-picker v-model="start_time"
                                     placeholder="开始时间">
                                 </el-date-picker>
 
@@ -80,7 +80,7 @@
                                 <span>-</span>
 
                                 <!-- 结束时间 -->
-                                 <el-date-picker 
+                                 <el-date-picker v-model="end_time"
                                     placeholder="结束时间">
                                 </el-date-picker>
 
@@ -149,13 +149,17 @@ export default {
                     }
                 }]
         },
-        questions_type_id:"",
-        questions_stem:"",
-        subject_id:"",//课程的id
-        exam_id:"",//类型id
-        user_id:"",//批卷人id
-        questions_answer:"",
-        title:""//课程
+        // questions_type_id:"",
+        // questions_stem:"",
+        // subject_id:"",//课程的id
+        // exam_id:"",//类型id
+        // user_id:"",//批卷人id
+        // questions_answer:"",
+        // title:"",//课程
+        exam_exam_id:"",//试卷的类型
+        questions:"",//试题名称
+        start_time:"",//开始时间
+        end_time:"",//结束时间
         }
     },
     methods:{
@@ -181,13 +185,17 @@ export default {
             // this.setStartTime(this.start_time)
             // this.setEndTime(this.end_time)
             let data={
-                questions_type_id:this. questions_type_id,
-                questions_stem:this.questions_stem,
-                subject_id:this.subject_id,
-                exam_id:this.exam_id,
-                user_id:this.user_id,
-                questions_answer:this.questions_answer,
-                title:this.title,
+                // questions_type_id:this. questions_type_id,
+                // questions_stem:this.questions_stem,
+                // subject_id:this.subject_id,
+                // exam_id:this.exam_id,
+                // user_id:this.user_id,
+                // questions_answer:this.questions_answer,
+                // title:this.title,
+                exam_exam_id:this.exam_exam_id,
+                questions:this.questions,
+                start_time:this.start_time,
+                end_time:this.end_time
             }
             this.getExam(data)
         },

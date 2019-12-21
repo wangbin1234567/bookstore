@@ -1,12 +1,12 @@
 import {getExam} from "@/api/examination.js"
 const state = {
-    questions_type_id:"",
-    questions_stem:"",
-    subject_id:"",//课程的id
-    exam_id:"",//类型id
-    user_id:"",//批卷人id
-    questions_answer:"",
-    title:"",//课程
+        // questions_type_id:"",
+        // questions_stem:"",
+        // subject_id:"",//课程的id
+        // exam_id:"",//类型id
+        // user_id:"",//批卷人id
+        // questions_answer:"",
+        // title:"",//课程
         // subject_id:"",//试卷名称
         // exam_exam_id:"",//试卷类型
         // title:"",//课程
