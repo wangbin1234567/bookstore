@@ -1,4 +1,4 @@
-import { jurisdiction, userList } from '@/api/index'
+import { jurisdiction, userList  } from '@/api/index'
 
 const state = {
     AddJurisdiction: [],

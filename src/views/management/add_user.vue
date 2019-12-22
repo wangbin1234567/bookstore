@@ -58,21 +58,22 @@
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
             </el-form-item>
         </el-form>
-        <el-form :model="ruleForm" status-icon ref="ruleForm" label-width="100px"
+        <el-form :model="AddList" status-icon ref="ruleForm" label-width="100px"
         class="demo-ruleForm3">
             <div style="width: 100%;text-align: left;margin-bottom:10px;">
                 <el-button>添加视图接口权限</el-button>
             </div>
-            <el-select v-model="value" placeholder="请选择已有视图" style="margin-bottom: 20px;">
+            <el-select v-model="AddList.elemt" placeholder="请选择已有视图" style="margin-bottom: 20px;">
               <el-option
                 v-for="item in AddJurisdiction"
                 :key="item.view_authority_id"
                 :label="item.view_authority_text"
-                :value="item.view_id">
+                :value="item"
+              >
               </el-option>
             </el-select>
             <el-form-item>
-                <el-button type="primary">确定</el-button>
+                <el-button type="primary" @click="jurisdictionList()">确定</el-button>
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -85,7 +86,6 @@
               <el-option
                 v-for="item in options"
                 :key="item"
-               
                 :value="item.value">
               </el-option>
             </el-select>
@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import { register } from '@/api/index'
+import { register, jurisdictionAdd } from '@/api/index'
 import { mapState, mapActions } from 'vuex'
 export default {
     data() {
@@ -140,22 +140,24 @@ export default {
         ruleForm: {
           user_name: '',
           user_pwd: '',
-          identity_id: ''
+          identity_id: '',
         },
-        
+        AddList:{
+          elemt:""
+        },
         value: ''
       };
     },
     computed: {
       ...mapState({
-          AddJurisdiction: state => state.index.AddJurisdiction,
-          userId: state => state.index.userId
+          AddJurisdiction: state => state.management.AddJurisdiction,
+          userId: state => state.management.userId
       }),
     },
     methods: {
       ...mapActions({
-          jurisdiction:'index/jurisdiction',
-          userList:'index/userList'
+          jurisdiction:'management/jurisdiction',
+          userList:'management/userList'
       }),
       submitForm() {
         // const res =  this.$api.user.register(this.ruleForm)
@@ -165,6 +167,13 @@ export default {
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      jurisdictionList(){
+        // let view_authority_text = this.AddList.view_authority_text;
+        // let view_id = this.view_id;
+        // console.log(jurisdictionAdd({view_authority_text,view_id}))
+        console.log(this.AddList.elemt);
+        
       }
     },
     mounted() {
