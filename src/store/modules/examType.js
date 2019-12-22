@@ -11,7 +11,7 @@ const mutations={
 const actions= {
     async getExamType({commit},payload){
         let res=await getExamType(payload)
-        // window.console.log(res.data,"----res")
+        // window.console.log(res.data,"----试卷")
         commit("updateExamType",res.data)
     }
 }

@@ -42,7 +42,7 @@
                             </div>
                             <!-- 课程选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single" v-model="title" placeholder="">
+                                <el-select class="ant-select-selection-single"  placeholder="">
                                     <el-option 
                                         v-for="item in course"
                                         :key="item.subject_text"
