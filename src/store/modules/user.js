@@ -32,9 +32,15 @@ const actions = {
   // user login
   async login({ commit }, userInfo) {
     const { username, password } = userInfo
+<<<<<<< HEAD
     const res = await login({ user_name: username, user_pwd: password })
     setToken(res.token)
     // console.log( res )
+=======
+    let res = await login({user_name: username, user_pwd: password})
+    console.log(res,"res........")
+    setToken(res.token)
+>>>>>>> jyh
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
     //     const { data } = response
@@ -45,16 +51,37 @@ const actions = {
     //     reject(error)
     //   })
     // })
+<<<<<<< HEAD
   },
   async userInfoss() {
     const res = await userInfoss()
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+<<<<<<< HEAD
+=======
+    console.log('res老骥伏枥==============', res)
+=======
+>>>>>>> jyh
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
   },
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       // getInfo(state.token).then(response => {
       //   const { data } = response
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
+      //   if (!data) {
+      //     reject('Verification failed, please Login again.')
+      //   }
+
+      //   const { roles, name, avatar, introduction } = data
+<<<<<<< HEAD
+
+=======
+=======
 
       //   if (!data) {
       //     reject('Verification failed, please Login again.')
@@ -62,20 +89,34 @@ const actions = {
 
       //   const { roles, name, avatar, introduction } = data
 
+>>>>>>> jyh
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
       //   // roles must be a non-empty array
       //   if (!roles || roles.length <= 0) {
       //     reject('getInfo: roles must be a non-null array!')
       //   }
+<<<<<<< HEAD
       const roles = 'admin'
       commit('SET_ROLES', roles)
       //   commit('SET_NAME', name)
       //   commit('SET_AVATAR', avatar)
       //   commit('SET_INTRODUCTION', introduction)
       resolve({ roles })
+<<<<<<< HEAD
+=======
+=======
+        const roles=["admin"]
+        commit('SET_ROLES', roles)
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
       //   commit('SET_NAME', name)
       //   commit('SET_AVATAR', avatar)
       //   commit('SET_INTRODUCTION', introduction)
       //   resolve(data)
+<<<<<<< HEAD
+=======
+      resolve({roles})
+>>>>>>> jyh
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
       // }).catch(error => {
       //   reject(error)
       // })

@@ -88,17 +88,34 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { mapActions } from "vuex";
 // import { validUsername } from '@/utils/validate'
 import LangSelect from "@/components/LangSelect";
 import SocialSign from "./components/SocialSignin";
+=======
+<<<<<<< HEAD
+import { mapActions } from "vuex"
+=======
+// import { validUsername } from '@/utils/validate'
+>>>>>>> jyh
+import LangSelect from '@/components/LangSelect'
+import SocialSign from './components/SocialSignin'
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
 
 export default {
   name: "Login",
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
+<<<<<<< HEAD
       //验证
+=======
+<<<<<<< HEAD
+=======
+      //验证
+>>>>>>> jyh
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
       if (!value) {
         callback(new Error("Please enter the correct user name"));
       } else {
@@ -111,12 +128,22 @@ export default {
       // }
     };
     const validatePassword = (rule, value, callback) => {
+<<<<<<< HEAD
       if (
         !/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(
           value
         )
       ) {
         callback(new Error("The password can not be less than 6 digits"));
+=======
+<<<<<<< HEAD
+      if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)
+      ) {
+=======
+      if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
+>>>>>>> jyh
+        callback(new Error('The password can not be less than 6 digits'))
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
       } else {
         callback();
       }

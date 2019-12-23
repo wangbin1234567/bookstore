@@ -83,6 +83,36 @@ export const constantRoutes = [
       }
     ]
   },
+   {
+    path: '/grades',
+    component: Layout,
+    redirect: '/grades/grade',
+    name: 'grades',
+    meta: {
+      title: '班级管理',
+      icon: 'tree-table'
+    },
+    children: [
+      {
+        path: 'grade',
+        component: () => import('@/views/grades/grade'),
+        name: 'grade',
+        meta: { title: '班级管理' }
+      },
+      {
+        path: 'room',
+        // component: () => import('@/views/excel/select-excel'),
+        name: 'room',
+        meta: { title: '教室管理' }
+      },
+      {
+        path: 'student',
+        // component: () => import('@/views/excel/merge-header'),
+        name: 'student',
+        meta: { title: '学生管理' }
+      }
+    ]
+  },
   {
     path: '/grades',
     component: Layout,
@@ -124,7 +154,8 @@ export const constantRoutes = [
         meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
-  },
+  }, 
+ 
   {
     path: '/guide',
     component: Layout,
@@ -189,6 +220,7 @@ export const asyncRoutes = [
           // if do not set roles, means: this page does not require permission
         }
       },
+    
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
@@ -200,6 +232,10 @@ export const asyncRoutes = [
       }
     ]
   },
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
   {
     path: '/icon',
     component: Layout,
@@ -297,6 +333,7 @@ export const asyncRoutes = [
       }
     ]
   },
+<<<<<<< HEAD
   {
     path: '/excel',
     component: Layout,
@@ -361,6 +398,10 @@ export const asyncRoutes = [
       }
     ]
   },
+=======
+  
+
+>>>>>>> jyh
   {
     path: '/zip',
     component: Layout,
