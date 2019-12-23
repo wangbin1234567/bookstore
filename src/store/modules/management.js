@@ -1,8 +1,9 @@
-import { jurisdiction, userList  } from '@/api/index'
+import { jurisdiction, userList, Apijurisdiction  } from '@/api/index'
 
 const state = {
     AddJurisdiction: [],
-    userId:[]
+    userId:[],
+    ApiList:[]
 }
   
 const mutations = {
@@ -10,7 +11,14 @@ const mutations = {
         state.AddJurisdiction = payload
     },
     USER_ID:(state,payload) => {
-        state.userId = payload
+        let data = [];
+        payload.map(item => {
+            data.push(item.identity_text)
+        })
+        state.userId = [...new Set(data)]        
+    },
+    API_list:(state,payload) => {
+        state.ApiList = payload;
     }
 }
   
@@ -22,6 +30,10 @@ const actions = {
     async userList({commit}){
         let res = await userList();
         commit('USER_ID',res.data)
+    },
+    async Apijurisdiction({commit}){
+        let res = await Apijurisdiction();
+        commit('API_list',res.data)
     }
 }
   
