@@ -12,14 +12,13 @@ const getters = {
   roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
   errorLogs: state => state.errorLog.logs,
-<<<<<<< HEAD
   testList: state => state.test.testList
-<<<<<<< HEAD
+
   // gradeList: state=>state.grade.gradeList
-=======
-=======
+
   // gradeList: state=>state.grade.gradeList
->>>>>>> jyh
->>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
+
+  // gradeList: state=>state.grade.gradeList
+
 }
 export default getters

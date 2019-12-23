@@ -83,7 +83,7 @@ export const constantRoutes = [
       }
     ]
   },
-   {
+  {
     path: '/grades',
     component: Layout,
     redirect: '/grades/grade',
@@ -154,8 +154,7 @@ export const constantRoutes = [
         meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
-  }, 
- 
+  },
   {
     path: '/guide',
     component: Layout,
@@ -220,7 +219,6 @@ export const asyncRoutes = [
           // if do not set roles, means: this page does not require permission
         }
       },
-    
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
@@ -232,10 +230,6 @@ export const asyncRoutes = [
       }
     ]
   },
-<<<<<<< HEAD
-=======
- 
->>>>>>> 41743e1a2c860fc47b31bb225c886901e7a1ea2e
   {
     path: '/icon',
     component: Layout,
@@ -333,7 +327,6 @@ export const asyncRoutes = [
       }
     ]
   },
-<<<<<<< HEAD
   {
     path: '/excel',
     component: Layout,
@@ -398,10 +391,6 @@ export const asyncRoutes = [
       }
     ]
   },
-=======
-  
-
->>>>>>> jyh
   {
     path: '/zip',
     component: Layout,
