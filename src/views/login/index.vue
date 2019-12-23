@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     ...mapActions({
-        userInfoss:'user/userInfo'
+        userInfoss:'user/userInfoss'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {

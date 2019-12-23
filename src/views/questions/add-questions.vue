@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <div class="ant-form-item-label">请选择考试系统</div>
+          <div class="ant-form-item-label">请选择考试类型</div>
           <!-- <select name="" id=""></select> -->
           <div>
             <el-select v-model="total.value" placeholder="请选择">
@@ -58,22 +58,19 @@
             ></el-option>
           </el-select>
           </div>
-           <div class="ant-form-item-label">请选择考试系统</div>
+           <div class="ant-form-item-label">请选择课程类型</div>
           <!-- <select name="" id=""></select> -->
           <div>
-            <el-select v-model="total.value1" placeholder="请选择" @change="change1({
-                changId:item.subject_id
-              })">
+            <el-select v-model="total.value1" placeholder="请选择" >
             <el-option
               v-for="item in testSubjectList"
               :key="item.value"
               :label="item.subject_text"
               :value="item.subject_id"
-              
             ></el-option>
           </el-select>
           </div>
-           <div class="ant-form-item-label">请选择考试系统</div>
+           <div class="ant-form-item-label">请选择题目类型</div>
           <!-- <select name="" id=""></select> -->
           <div>
             <el-select v-model="total.value2" placeholder="请选择">
@@ -81,7 +78,7 @@
               v-for="item in testList"
               :key="item.value"
               :label="item.questions_type_text"
-              :value="item.questions_type_sort"
+              :value="item.questions_type_id"
             ></el-option>
           </el-select>
           </div>
@@ -131,11 +128,12 @@ export default {
         input: "",
         value: "",
         value1: "",
-       value2: "",
-       textarea2:'',
-       textarea1:''
+        value2: "",
+        textarea1:'',
+        textarea2: '',
+        userId:JSON.parse(sessionStorage.getItem("userInfo")).user_id||''
       },
-      changId:''
+      
     };
   },
   computed:{
@@ -149,21 +147,34 @@ export default {
 ...mapActions({
       testGenre:'test/testGenre',
       testSubject: 'test/testSubject',
-      testManagement: 'test/testManagement'
+      testManagement: 'test/testManagement',
+      addTestPort: 'test/addTestPort'
     }),
+    // chang1(){
+    //   console.log(222)
+    //   this.testList.forEach((item,index)=>{
+    //     console.log(item)
+    //      console.log(item.questions_type_text,this.total.value2)
+    //     if(item.questions_type_text==this.total.value2){
+         
+    //       this.total.chang_type=this.testList[index].questions_type_id
+    //     }
+    //   })
+    // },
     open2() {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(()=>{
-
+          let total=this.total
+          this.addTestPort({total})
+          // console.log(this.total)
         })
       }
   },
   mounted(){
     this.testGenre()
-    console.log(this.testManagement())
     this.testSubject()
     this.testManagement()
   }

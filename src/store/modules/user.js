@@ -1,4 +1,4 @@
-import { login, logout, userInfoss} from '@/api/user'
+import { login, logout, userInfoss } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -48,6 +48,7 @@ const actions = {
   },
   async userInfoss() {
     const res = await userInfoss()
+    console.log('res老几------', res)
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
   },
   // get user info
