@@ -48,11 +48,10 @@ const actions = {
   },
   async userInfoss() {
     const res = await userInfoss()
-    console.log('res老几------', res)
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
   },
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       const roles = ["admin"]
       commit('SET_ROLES', roles)
