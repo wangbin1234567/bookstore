@@ -1,20 +1,18 @@
 import {CreateExam} from "@/api/examination.js"
 const state = {
+    data:""
 }
 
 const mutations = {
     updateExam(state,payload){
-     window.console.log(state)
-     window.console.log(payload)
+    state.data=payload
+    window.console.log(state.data,"-----data")
     },
 }
 
 const actions = {
    async CreateExam({commit},payload){
-       window.console.log(payload)
        let res = await CreateExam(payload)
-       window.console.log("-----------------")
-       window.console.log(res)
        commit("updateExam",res)
    }
 }

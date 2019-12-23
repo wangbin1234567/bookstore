@@ -41,7 +41,7 @@
                 <el-table-column prop="start_time" label="开始时间"></el-table-column>
                  <el-table-column prop="end_time" label="结束时间"></el-table-column>
                 <el-table-column prop="status" label="操作">
-                    <span style="color: #409eff">详情</span>
+                    <span style="color: #409eff" @click="tabDetail">详情</span>
                 </el-table-column>              
                    
             </el-table>
@@ -82,16 +82,25 @@ export default {
   },
   computed: {
       ...mapState({
-            examList:state=>state.getExam.examList
+            examList:state=>state.getExam.examList,
+            detailList:state=>State.examDetail.detailList,
+            
       })
   },
   methods: {
        ...mapActions({
-            getExam:"getExam/getExam"
+            getExam:"getExam/getExam",
+            getW5tcy:"examDetail/getW5tcy"
         }),
+        //点击详情按钮跳转到对应的详情页面
+        tabDetail(){
+            this.$router.push("detailTest")
+            this.getW5tcy()
+        }
   },
   created() {
         this.getExam()
+        // this.getW5tcy()
   },
 };
 </script>
@@ -101,7 +110,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #eeeeee;
+    background:#f0f2f5;
     header {
         width: 100%;
         height: 45px;

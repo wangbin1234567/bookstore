@@ -1,7 +1,7 @@
 import {getExam} from "@/api/examination.js"
 const state={
     //试卷列表
-    examList:""
+    examList:[]
 }
 const mutations={
     updateExames(state,payload){

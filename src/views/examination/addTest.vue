@@ -13,7 +13,7 @@
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">试卷名称:</label>
                             </div>
-                            <input type="text" id="title" class="ant-input" v-model="title">                            
+                            <input type="text" id="title" class="ant-input" >                            
                         </div>
                         <!-- 试卷类型 -->
                         <div class="ant-form-item">
@@ -146,6 +146,8 @@ export default {
         start_time:"",//开始时间
         end_time:"",//结束时间
         number:3,//题量 默认为3
+        // exam_exam_id:"",
+        // questions:""
         }
     },
     methods:{
@@ -157,9 +159,12 @@ export default {
             let data={
                 subject_id:this.subject_id,//学科
                 exam_id:this.exam_id,//试卷类型
-                title:this.title,//试卷标题
+                // title:this.title,//试卷标题
                 start_time:this.start_time,//开始时间
                 end_time:this.end_time,//结束时间
+                // number:this.number  //题量
+                // exam_exam_id:this.exam_exam_id,
+                // questions:this.questions
             }
             this.CreateExam(data)
         },
