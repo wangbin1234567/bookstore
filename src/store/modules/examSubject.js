@@ -11,7 +11,6 @@ const mutations={
 const actions= {
     async getSubject({commit},payload){
         let res=await getSubject(payload)
-        window.console.log(res,"------课程")
         commit("updateSubject",res.data)
     }
 }

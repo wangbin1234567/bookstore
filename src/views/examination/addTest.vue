@@ -13,7 +13,7 @@
                             <div class="ant-form-item-label">
                                 <label for="title" class="ant-form-item-required">试卷名称:</label>
                             </div>
-                            <input type="text" id="title" class="ant-input" v-model="questions">                            
+                            <input type="text" id="title" class="ant-input" v-model="title">                            
                         </div>
                         <!-- 试卷类型 -->
                         <div class="ant-form-item">
@@ -23,13 +23,9 @@
 
                             <!-- 类型选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single" v-model="exam_exam_id" placeholder="">
-                                    <el-option 
-                                        v-for="item in types"
-                                        :key="item.exam_name"
-                                        :label="item.exam_name"
-                                        :value="item.exam_name"
-                                    ></el-option>
+                                <el-select class="ant-select-selection-single" v-model="exam_id" placeholder="">
+                                    <!-- 试卷类型组件的展示 -->
+                                    <ExamTypes></ExamTypes>
                                 </el-select>
                             </div>
 
@@ -42,12 +38,9 @@
                             </div>
                             <!-- 课程选项 -->
                             <div class="ant-form-item-control">
-                                <el-select class="ant-select-selection-single"  placeholder="">
-                                    <el-option 
-                                        v-for="item in course"
-                                        :key="item.subject_text"
-                                        :label="item.subject_text"
-                                        :value="item.subject_text"></el-option>
+                                <el-select class="ant-select-selection-single" v-model="subject_id"  placeholder="">
+                                    <!-- 课程组件的展示 -->
+                                    <ExamCourse></ExamCourse>
                                 </el-select>
                             </div>
 
@@ -60,7 +53,7 @@
                             </div>
                             <!-- 题目数量 -->
                             <div class="ant-form-item-control">
-                                 <el-input-number class="ant-input-number-input"  controls-position="right"  :min="1" :max="10"></el-input-number>
+                                 <el-input-number class="ant-input-number-input" v-model="number"  controls-position="right"  :min="3" :max="10"></el-input-number>
                             </div>
 
                         </div>
@@ -91,7 +84,7 @@
                         <!-- 创建试卷按钮 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-control">
-                                <button class="ant-btn-primary" @click="createExam()">创建试卷</button>
+                                <button class="ant-btn-primary" @click="createExams()">创建试卷</button>
                             </div>
                         </div>
                     </div>                  
@@ -103,22 +96,20 @@
 <script>
 //引入头部组件
 import PublicHeader from "@/components/publicHeader/index"
-import {mapActions,mapState,mapMutations} from "vuex"
-// import examination from '../../store/modules/examination';
+import {mapActions,mapState} from "vuex"
+//引入考试类型组件
+import ExamTypes from "@/components/examTypes/index"
+//引入课程组件
+import ExamCourse from "@/components/examCourse/index"
 export default {
     components:{
-         PublicHeader
+         PublicHeader,
+         ExamTypes,
+         ExamCourse
     },
     computed:{
          ...mapState({
-             types:state=>state.examType.types,
              course:state=>state.examSubject.course,
-            //  subject_id:state=>state.examination.subject_id,
-            //  exam_exam_id:state=>state.examination.exam_exam_id,
-            //  title:state=>state.examination.title,
-            //  number:state=>state.examination.number,
-            //  start_time:state=>state.examination.start_time,
-            //  end_time:state=>state.examination.end_time
          })
     },
     data(){
@@ -149,61 +140,30 @@ export default {
                     }
                 }]
         },
-        // questions_type_id:"",
-        // questions_stem:"",
-        // subject_id:"",//课程的id
-        // exam_id:"",//类型id
-        // user_id:"",//批卷人id
-        // questions_answer:"",
-        // title:"",//课程
-        exam_exam_id:"",//试卷的类型
-        questions:"",//试题名称
+        subject_id:"",//学科
+        exam_id:"",//试卷类型
+        title:"",//试卷标题
         start_time:"",//开始时间
         end_time:"",//结束时间
+        number:3,//题量 默认为3
         }
     },
     methods:{
         ...mapActions({
-            getExam:"examination/getExam",
-            getExamType:"examType/getExamType",
-            getSubject:"examSubject/getSubject"
-        }),
-        ...mapMutations({
-            // setSubject:"examination/setSubject",
-            // setExam:"examination/setExam",
-            // setTitle:"examination/setTitle",
-            // setNumber:"examination/setNumber",
-            // setStartTime:"examination/setStartTime",
-            // setEndTime:"examination/setEndTime"
+            CreateExam:"examination/CreateExam",
         }),
         //点击创建试卷按钮
-        createExam(){
-            // this.setNumber(this.number)
-            // this.setSubject(this.subject_id)
-            // this.setExam(this.exam_id)
-            // this.setTitle(this.title)
-            // this.setStartTime(this.start_time)
-            // this.setEndTime(this.end_time)
+        createExams(){
             let data={
-                // questions_type_id:this. questions_type_id,
-                // questions_stem:this.questions_stem,
-                // subject_id:this.subject_id,
-                // exam_id:this.exam_id,
-                // user_id:this.user_id,
-                // questions_answer:this.questions_answer,
-                // title:this.title,
-                exam_exam_id:this.exam_exam_id,
-                questions:this.questions,
-                start_time:this.start_time,
-                end_time:this.end_time
+                subject_id:this.subject_id,//学科
+                exam_id:this.exam_id,//试卷类型
+                title:this.title,//试卷标题
+                start_time:this.start_time,//开始时间
+                end_time:this.end_time,//结束时间
             }
-            this.getExam(data)
+            this.CreateExam(data)
         },
     },
-    created(){
-        this.getExamType()
-        this.getSubject()
-    }
 }
 </script>
 <style scoped>

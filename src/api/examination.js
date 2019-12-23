@@ -1,14 +1,31 @@
 import request from '@/utils/request'
-
-export function getExam(payload){
-    let {exam_exam_id,questions,start_time,end_time}=payload
-    console.log(exam_exam_id,questions,start_time,end_time)
+//创建试卷
+export function CreateExam(payload){
+    let {subject_id,exam_id,title,start_time,end_time}=payload
+    console.log(subject_id,exam_id,title,start_time,end_time)
     return request({
         url:"/exam/exam",
         method:"post",
-        data:{exam_exam_id,questions,start_time,end_time}
+        data:{subject_id,exam_id,title,start_time,end_time}
     })
 }
+//获取试卷列表
+export function getExam(){
+    return request({
+        url:"/exam/exam",
+        method:"get",
+    })
+}
+//按条件获取试题类型
+// export function getQuestions(payload){
+//     let {exam_id}=payload
+//     console.log(exam_id)
+//     return request({
+//         url:"/exam/questions/condition",
+//         method:"get",
+//         data:{exam_id}
+//     })
+// }
 //考试类型
 export function getExamType(){
     return request({
