@@ -34,7 +34,6 @@ const actions = {
     const { username, password } = userInfo
     const res = await login({ user_name: username, user_pwd: password })
     setToken(res.token)
-    // console.log( res )
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
     //     const { data } = response

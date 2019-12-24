@@ -42,8 +42,6 @@
             name="password"
             tabindex="2"
             autocomplete="on"
-            @keyup.native="checkCapslock"
-            @blur="capsTooltip = false"
             @keyup.enter.native="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">

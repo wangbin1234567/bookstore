@@ -249,6 +249,40 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/examination',
+    component: Layout,
+    redirect: "/examination/addTest",
+    name:"Examination",
+    meta: {
+      title: "考试管理",
+      icon: "skill"
+    },
+    children: [      
+          //添加考试  
+          {
+            path: "addTest",
+            component: () => import("@/views/examination/addTest"),
+            meta: { title: "添加考试"}
+          },
+          //考试列表
+          {
+            path: "examList",
+            component: () => import("@/views/examination/examList"),
+            meta: { title:"试卷列表"}
+          },
+          //详情
+          {
+            path:"detailTest",
+            component:()=> import("@/views/examination/detailTest")
+          },
+          //创建考试
+          {
+            path:"createTest",
+            component: () => import("@/views/examination/createTest")
+          }       
+    ]
+  },
+  {
     path: '/tab',
     component: Layout,
     children: [
