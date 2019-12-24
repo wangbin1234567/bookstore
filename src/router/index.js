@@ -114,36 +114,6 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/grades',
-    component: Layout,
-    redirect: '/grades/grade',
-    name: 'grades',
-    meta: {
-      title: '班级管理',
-      icon: 'tree-table'
-    },
-    children: [
-      {
-        path: 'grade',
-        component: () => import('@/views/grades/grade'),
-        name: 'grade',
-        meta: { title: '班级管理' }
-      },
-      {
-        path: 'room',
-        // component: () => import('@/views/excel/select-excel'),
-        name: 'room',
-        meta: { title: '教室管理' }
-      },
-      {
-        path: 'student',
-        // component: () => import('@/views/excel/merge-header'),
-        name: 'student',
-        meta: { title: '学生管理' }
-      }
-    ]
-  },
-  {
     path: '/documentation',
     component: Layout,
     children: [
