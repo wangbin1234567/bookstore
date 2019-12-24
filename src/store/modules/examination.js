@@ -1,12 +1,12 @@
 import {CreateExam} from "@/api/examination.js"
 const state = {
+    //存放参数
     data:""
 }
 
 const mutations = {
     updateExam(state,payload){
     state.data=payload
-    window.console.log(state.data,"-----data")
     },
 }
 

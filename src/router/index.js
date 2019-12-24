@@ -247,6 +247,11 @@ export const asyncRoutes = [
           {
             path:"detailTest",
             component:()=> import("@/views/examination/detailTest")
+          },
+          //创建考试
+          {
+            path:"createTest",
+            component: () => import("@/views/examination/createTest")
           }       
     ]
   },

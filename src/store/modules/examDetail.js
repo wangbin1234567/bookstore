@@ -6,7 +6,7 @@ const state = {
 const mutations = {
     updateW5tcy(state,payload){
     state.detailList=payload
-    window.console.log(state.detailList,"-----list")
+    // window.console.log(state.detailList,"-----list")
     },
 }
 

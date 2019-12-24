@@ -1,12 +1,17 @@
 import request from '@/utils/request'
 //创建试卷
 export function CreateExam(payload){
-    let {subject_id,exam_id,start_time,end_time}=payload
-    console.log(subject_id,exam_id,start_time,end_time)
     return request({
-        url:"/exam/new",
+        url:"/exam/exam",
         method:"post",
-        data:{subject_id,exam_id,start_time,end_time}
+        data:payload
+    })
+}
+export function CreateTest(payload){
+    return request({
+        url:"/exam/exam",
+        method:"post",
+        data:payload
     })
 }
 //获取试卷列表
