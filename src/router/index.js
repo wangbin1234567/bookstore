@@ -101,18 +101,49 @@ export const constantRoutes = [
       },
       {
         path: 'room',
-        // component: () => import('@/views/excel/select-excel'),
+        component: () => import('@/views/grades/room'),
         name: 'room',
         meta: { title: '教室管理' }
       },
       {
         path: 'student',
-        // component: () => import('@/views/excel/merge-header'),
+        component: () => import('@/views/grades/student'),
         name: 'student',
         meta: { title: '学生管理' }
       }
     ]
   },
+
+{
+  path: '/paper',
+  component: Layout,
+  redirect: '/paper/classlist',
+  name: 'paper',
+  alwaysShow: true,
+  meta: {
+    title: '阅卷管理',
+    icon: 'tree-table'
+  },
+  children: [
+    {
+      path: 'classlist',
+      component: () => import('@/views/paper/classlist'),
+      name: 'classlist',
+      meta: { title: '待批班级' }
+    },
+    {
+      path: 'classmate',
+      component: () => import('@/views/paper/classmate'),
+      name: 'classmate'
+    },
+    {
+      path: 'detail',
+      component: () => import('@/views/paper/detail'),
+      name: 'detail'
+    }
+  ]
+},
+
   {
     path: '/documentation',
     component: Layout,
@@ -301,6 +332,70 @@ export const asyncRoutes = [
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
         meta: { title: 'errorLog', icon: 'bug' }
+      }
+    ]
+  },
+  {
+    path: '/excel',
+    component: Layout,
+    redirect: '/excel/export-excel',
+    name: 'Excel',
+    meta: {
+      title: 'excel',
+      icon: 'excel'
+    },
+    children: [
+      {
+        path: 'export-excel',
+        component: () => import('@/views/excel/export-excel'),
+        name: 'ExportExcel',
+        meta: { title: 'exportExcel' }
+      },
+      {
+        path: 'export-selected-excel',
+        component: () => import('@/views/excel/select-excel'),
+        name: 'SelectExcel',
+        meta: { title: 'selectExcel' }
+      },
+      {
+        path: 'export-merge-header',
+        component: () => import('@/views/excel/merge-header'),
+        name: 'MergeHeader',
+        meta: { title: 'mergeHeader' }
+      },
+      {
+        path: 'upload-excel',
+        component: () => import('@/views/excel/upload-excel'),
+        name: 'UploadExcel',
+        meta: { title: 'uploadExcel' }
+      }
+    ]
+  },
+  {
+    path: '/questions',
+    component: Layout,
+    redirect: '/questions/add-questions',
+    alwaysShow: true,
+    name: 'Questions',
+    meta: { title: '试题管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-questions',
+        component: () => import('@/views/questions/add-questions'),
+        name: 'Addquestions',
+        meta: { title: '添加考试' }
+      },
+      {
+        path: 'classify-questions',
+        component: () => import('@/views/questions/classify-questions'),
+        name: 'classifyQuestions',
+        meta: { title: '考试分类' }
+      },
+      {
+        path: 'examine-questions',
+        component: () => import('@/views/questions/examine-questions'),
+        name: 'ExamineQuestions',
+        meta: { title: '查看试题' }
       }
     ]
   },

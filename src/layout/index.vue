@@ -66,7 +66,8 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
-
+    background: #eee;
+    overflow-y: scroll;
     &.mobile.openSidebar {
       position: fixed;
       top: 0;
@@ -85,7 +86,7 @@ export default {
 
   .fixed-header {
     position: fixed;
-    top: 0;
+    
     right: 0;
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});

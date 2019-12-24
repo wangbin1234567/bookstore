@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 // import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
@@ -96,6 +97,11 @@ export default {
       } else {
         callback()
       }
+      // if (!validUsername(value)) {
+      //   callback(new Error('Please enter the correct user name'))
+      // } else {
+      //   callback()
+      // }
     }
     const validatePassword = (rule, value, callback) => {
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
@@ -142,11 +148,15 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    ...mapActions({
+        userInfo:'user/userInfo'
+    }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
         if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
@@ -170,17 +180,18 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+          try {
+            await this.$store.dispatch('user/login', this.loginForm)
+            await this.userInfo()
+            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            
+          } catch (e) {
+
+          }
+          this.loading = false
         } else {
           console.log('error submit!!')
           return false
@@ -188,12 +199,14 @@ export default {
       })
     },
     getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== 'redirect') {
-          acc[cur] = query[cur]
-        }
-        return acc
-      }, {})
+      // return Object.keys(query).reduce((acc, cur) => {
+      //   if (cur !== 'redirect') {
+      //     acc[cur] = query[cur]
+      //   }
+      //   return acc
+      // }, {});
+      delete query.redirect
+      return query
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

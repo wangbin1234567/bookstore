@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, userInfo} from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -46,19 +46,20 @@ const actions = {
     //   })
     // })
   },
-
+  async userInfo() {
+    const res = await userInfo()
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+    console.log('res老骥伏枥==============', res)
+  },
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       // getInfo(state.token).then(response => {
       //   const { data } = response
-
       //   if (!data) {
       //     reject('Verification failed, please Login again.')
       //   }
-
       //   const { roles, name, avatar, introduction } = data
-
       //   // roles must be a non-empty array
       //   if (!roles || roles.length <= 0) {
       //     reject('getInfo: roles must be a non-null array!')
