@@ -20,9 +20,10 @@ export function getGrade() {
       data
     })
   }
-  export function deleteGrade(grade_id) {
+  export function deleteGrade(id) {
     return request({
-      url: `//manger/grade/delete/${grade_id}`,
-      method: 'delete'
+      url: `/manger/grade/delete`,
+      method: 'delete',
+      data: {grade_id: id}
     })
   }
