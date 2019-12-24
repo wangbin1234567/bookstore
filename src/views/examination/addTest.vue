@@ -154,7 +154,6 @@ export default {
     methods:{
         ...mapActions({
             CreateExam:"examination/CreateExam",
-            CreateTest:"createTest/CreateTest"
         }),
         //点击创建试卷按钮
         createExams(){
@@ -171,7 +170,6 @@ export default {
             if(this.subject_id!=""&&this.exam_id!=""&&this.title!=""&&this.start_time!=""&&this.end_time!=""&&this.number!=""){
                 this.$router.push("createTest")
             }
-            this.CreateTest(data)
         },
     },
 }

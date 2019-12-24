@@ -1,11 +1,13 @@
 <template>
     <div class="createTest-box">
         <el-container>
+            <!-- 公共头部 -->
             <el-header>
                 <PublicHeader :name="name" />
             </el-header>
             <el-main>
                 <div class="ant-layout-content">
+                    <!-- 添加按钮 -->
                     <el-button plain>添加新题</el-button>
                     <div class="style_exam__2rgl0">
                         <h2>{{title}}</h2>

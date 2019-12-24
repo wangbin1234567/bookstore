@@ -7,13 +7,6 @@ export function CreateExam(payload){
         data:payload
     })
 }
-export function CreateTest(payload){
-    return request({
-        url:"/exam/exam",
-        method:"post",
-        data:payload
-    })
-}
 //获取试卷列表
 export function getExam(){
     return request({
