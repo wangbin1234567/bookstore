@@ -1,12 +1,170 @@
 <template>
   <div>
-    <h2 style="padding: 10px 20px; margin-top: 10px;">用户展示</h2>
+    <h2 style="padding: 5px 20px; margin-top: 10px;">用户展示</h2>
+    <el-tabs type="border-card">
+      <el-tab-pane label="用户数据">
+        <h3>用户管理</h3>
+        <el-table
+          :data="DataList"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="user_name"
+            label="用户名"
+            width="280">
+          </el-table-column>
+          <el-table-column
+            prop="user_pwd"
+            label="密码"
+            width="700">
+          </el-table-column>
+          <el-table-column
+            prop="identity_text"
+            label="身份">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="身份数据">
+        <h3>身份数据</h3>
+        <el-table
+          :data="identityList"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="identity_text"
+            label="身份名称"
+            width="1200">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="api接口权限">
+        <h3>api接口权限</h3>
+        <el-table
+          :data="apIIdentity"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="api_authority_text"
+            label="api权限名称"
+            width="280">
+          </el-table-column>
+          <el-table-column
+            prop="api_authority_url"
+            label="api权限url"
+            width="700">
+          </el-table-column>
+          <el-table-column
+            prop="api_authority_method"
+            label="api权限方法">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="身份和api接口权限">
+        <h3>身份和api接口权限</h3>
+        <el-table
+          :data="APIrelation"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="identity_text"
+            label="身份名称"
+            width="280">
+          </el-table-column>
+          <el-table-column
+            prop="api_authority_text"
+            label="api权限名称"
+            width="300">
+          </el-table-column>
+          <el-table-column
+            prop="api_authority_url"
+            label="api权限url"
+            width="500">
+          </el-table-column>
+          <el-table-column
+            prop="api_authority_method"
+            label="api权限方法"
+            width="200">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="视图接口权限">
+        <h3>视图接口权限</h3>
+        <el-table
+          :data="apiAuthority"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="view_authority_text"
+            label="视图名称"
+            width="500">
+          </el-table-column>
+          <el-table-column
+            prop="view_id"
+            label="视图id"
+            width="700">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="视图和身份权限关系">
+        <h3>视图和身份权限关系</h3>
+        <el-table
+          :data="viewAuthority"
+          stripe
+          style="width: 100%">
+          <el-table-column
+            prop="identity_text"
+            label="身份"
+            width="300">
+          </el-table-column>
+          <el-table-column
+            prop="view_authority_text"
+            label="视图名称"
+            width="500">
+          </el-table-column>
+          <el-table-column
+            prop="view_id"
+            label="视图id"
+            width="700">
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   export default {
     
+
+    computed: {
+      ...mapState({
+        DataList: state => state.UserDisplay.DataList,
+        identityList: state => state.UserDisplay.identityList,
+        apIIdentity: state => state.UserDisplay.apIIdentity,
+        APIrelation: state => state.UserDisplay.APIrelation,
+        apiAuthority: state => state.UserDisplay.apiAuthority,
+        viewAuthority: state => state.UserDisplay.viewAuthority
+      })
+    },
+    methods:{
+      ...mapActions({
+        userLister: "UserDisplay/userLister",
+        identity: "UserDisplay/identity",
+        api_identity: "UserDisplay/api_identity",
+        relation: "UserDisplay/relation",
+        authority: "UserDisplay/authority",
+        view_authority: "UserDisplay/view_authority"
+      })
+    },
+    mounted() {
+      this.userLister()
+      this.identity()
+      this.api_identity()
+      this.relation()
+      this.authority()
+      this.view_authority()
+    },
   }
 </script>
 
