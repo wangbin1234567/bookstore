@@ -114,6 +114,28 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/management',
+    component: Layout,
+    redirect: '/management/Add',
+    // alwaysShow: true,
+    name: 'Management',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'Adduser',
+        component: () => import('@/views/management/add_user'),
+        name: 'Add',
+        meta: { title: '添加用户' }
+      },
+      {
+        path: 'listUser',
+        component: () => import('@/views/management/list-user'),
+        name: 'List',
+        meta: { title: '用户展示' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [
