@@ -112,12 +112,7 @@ export default {
       // }
     };
     const validatePassword = (rule, value, callback) => {
-      if (
-        !/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(
-          value
-        )
-      ) {
-        callback(new Error("The password can not be less than 6 digits"));
+      
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
@@ -144,7 +139,7 @@ export default {
       redirect: undefined,
       otherQuery: {}
     };
-    }
+    
   },
 
   watch:{

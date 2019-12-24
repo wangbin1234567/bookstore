@@ -53,7 +53,7 @@ const actions = {
   // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      const roles = ["admin"]
+      const roles = ['admin']
       commit('SET_ROLES', roles)
       resolve({ roles })
       // getInfo(state.token).then(response => {
