@@ -166,7 +166,7 @@ export default {
                 number:this.number  //题量
             }
             this.CreateExam(data)
-            localStorage.setItem("addTest",data)
+            localStorage.setItem("addTest",JSON.stringify(data))
             if(this.subject_id!=""&&this.exam_id!=""&&this.title!=""&&this.start_time!=""&&this.end_time!=""&&this.number!=""){
                 this.$router.push("createTest")
             }
@@ -210,6 +210,7 @@ export default {
     height:32px;
     background:#fff;
     padding:4px 11px;
+    border:1px solid #ccc;
 }
 .ant-form-item-control{
     width:100%;

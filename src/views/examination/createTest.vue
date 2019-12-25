@@ -8,7 +8,8 @@
             <el-main>
                 <div class="ant-layout-content">
                     <!-- 添加按钮 -->
-                    <el-button plain>添加新题</el-button>
+                    <el-button plain @click="tabMask">添加新题</el-button>
+                    <!-- <ExamMask v-model="isTrue"></ExamMask> -->
                     <div class="style_exam__2rgl0">
                         <h2>{{title}}</h2>
                         <p>考试时间:1小时30分钟  监考人:{{user_name}} 开始时间:{{start_time}} 阅卷人:{{user_name}}</p>
@@ -25,6 +26,9 @@
 import PublicHeader from "@/components/publicHeader/index"
 //引入试题列表
 import TestList from "@/components/testList/index"
+//引入弹窗组件
+import ExamMask from "@/components/examMask/index"
+
 import {mapState} from "vuex"
 export default {
     props:{
@@ -32,14 +36,16 @@ export default {
     },
     components:{
         PublicHeader,
-        TestList
+        TestList,
+        ExamMask
     },
     data(){
         return {
             name:"创建考试",
             title:localStorage.getItem("addTest").title||[],
             start_time:localStorage.getItem("addTest").start_time||[],
-            user_name:localStorage.getItem("addTest").questions[0].user_name||[]
+            user_name:localStorage.getItem("addTest").questions[0].user_name||[],
+            isTrue:false
         }
     },
     computed:{
@@ -48,7 +54,9 @@ export default {
         })
     },
     methods:{
-
+        tabMask(){
+            // this.isTrue=!this.isTrue
+        }
     },
     created(){
 
@@ -62,6 +70,7 @@ export default {
     .createTest-box{
         width:100%;
         background:#f0f2f5;
+        position: relative;
     }
     .ant-layout-content{
         background: rgb(255, 255, 255);
