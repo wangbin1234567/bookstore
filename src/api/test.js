@@ -17,3 +17,34 @@ export function testSubject() {
     method: 'GET'
   })
 }
+export function addTestPort(data) {
+  return request({
+    url: '/exam/questions',
+    method: 'post',
+    data
+  })
+}
+export function addQuestionsType() {
+  return request({
+    url: '/exam/insertQuestionsType',
+    method: 'GET'
+  })
+}
+export function testCondition() {
+  return request({
+    url: '/exam/questions/condition'
+  })
+}
+export function testInquire(params) {
+  return request({
+    url: '/exam/questions/condition',
+    method: 'GET',
+    params
+  })
+}
+export function addNewExam() {
+  return request({
+    url: '/exam/questions/new',
+    method: 'GET'
+  })
+}

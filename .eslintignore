@@ -2,4 +2,8 @@ build/*.js
 src/assets
 public
 dist
+<<<<<<< HEAD
 src/*
+=======
+src/*
+>>>>>>> wangbin

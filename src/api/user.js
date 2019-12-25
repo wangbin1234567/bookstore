@@ -22,7 +22,7 @@ export function logout() {
     method: 'post'
   })
 }
-export function userInfo() {
+export function userInfoss() {
   return request({
     url: '/user/userInfo',
     method: 'get'

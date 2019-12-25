@@ -1,4 +1,4 @@
-import { login, logout, userInfo} from '@/api/user'
+import { login, logout, userInfoss } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -46,14 +46,17 @@ const actions = {
     //   })
     // })
   },
-  async userInfo() {
-    const res = await userInfo()
+  async userInfoss() {
+    const res = await userInfoss()
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
     console.log('res老骥伏枥==============', res)
   },
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit }) {
     return new Promise((resolve, reject) => {
+      const roles = ['admin']
+      commit('SET_ROLES', roles)
+      resolve({ roles })
       // getInfo(state.token).then(response => {
       //   const { data } = response
       //   if (!data) {
@@ -64,13 +67,10 @@ const actions = {
       //   if (!roles || roles.length <= 0) {
       //     reject('getInfo: roles must be a non-null array!')
       //   }
-        const roles=["admin"]
-        commit('SET_ROLES', roles)
       //   commit('SET_NAME', name)
       //   commit('SET_AVATAR', avatar)
       //   commit('SET_INTRODUCTION', introduction)
       //   resolve(data)
-      resolve({roles})
       // }).catch(error => {
       //   reject(error)
       // })
