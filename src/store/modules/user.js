@@ -46,43 +46,17 @@ const actions = {
     //   })
     // })
   },
-  async userInfoss() {
-    const res = await userInfoss()
-    sessionStorage.setItem('userInfo', JSON.stringify(res.data))
-  },
-  // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       const roles = ['admin']
       commit('SET_ROLES', roles)
       resolve({ roles })
-      // getInfo(state.token).then(response => {
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
-      //   const { roles, name, avatar, introduction } = data
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
-      //   const { roles, name, avatar, introduction } = data
-      //   // roles must be a non-empty array
-      //   if (!roles || roles.length <= 0) {
-      //     reject('getInfo: roles must be a non-null array!')
-      //   }
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   commit('SET_INTRODUCTION', introduction)
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   commit('SET_INTRODUCTION', introduction)
-      //   resolve(data)
-      // }).catch(error => {
-      //   reject(error)
-      // })
     })
   },
-
-  // user logout
+  async userInfoss() {
+    const res = await userInfoss()
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+  },
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {

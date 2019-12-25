@@ -11,9 +11,6 @@
             <el-input
               v-model="total.input"
               placeholder="请输入目标标题,不超过20字"
-              @change="change({
-                   data:e.target.value
-                 })"
             ></el-input>
           </div>
           <div class="ant-form-item-label">题目主题</div>
@@ -123,17 +120,24 @@
 import { mapActions, mapState } from "vuex"
 export default {
   data() {
+    let detailsContent=JSON.parse(sessionStorage.getItem('detailsContent'))
+    console.log('detailsContent-------------',detailsContent)
     return {
       total:{
-        input: "",
-        value: "",
-        value1: "",
-        value2: "",
-        textarea1:'',
-        textarea2: '',
-        userId:JSON.parse(sessionStorage.getItem("userInfo")).user_id||''
+        input: ""||detailsContent.title,
+        value: ""||detailsContent.exam_id,
+        value1: ""||detailsContent.subject_id,
+        value2: ""||detailsContent.questions_type_id,
+        textarea1:''||detailsContent.questions_stem,
+        textarea2: ''||detailsContent.questions_answer,
+        questions_id:''||detailsContent.questions_id
       },
-      
+      // placeholder1:detailsContent.exam_name,
+      // placeholder2:detailsContent.subject_text,
+      // placeholder3:detailsContent.questions_type_text,
+      // values1:detailsContent.exam_id,
+      // values2:detailsContent.subject_id,
+      // values3:detailsContent.questions_type_id
     };
   },
   computed:{
@@ -143,12 +147,13 @@ export default {
       testList:state=>state.test.testList,
     })
   },
+  
   methods:{
 ...mapActions({
       testGenre:'test/testGenre',
       testSubject: 'test/testSubject',
       testManagement: 'test/testManagement',
-      addTestPort: 'test/addTestPort'
+      questionsUpdate: 'test/questionsUpdate'
     }),
     open2() {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -157,7 +162,16 @@ export default {
           type: 'warning'
         }).then(()=>{
           let total=this.total
-          this.addTestPort({total})
+          // if(!total.value){
+          //   total.value=this.values1
+          // }
+          // if(!total.value1){
+          //   total.value1=this.values2
+          // }
+          // if(!total.value2){
+          //   total.value2=this.values3
+          // }
+          this.questionsUpdate({total})
           // console.log(this.total)
         })
       }
