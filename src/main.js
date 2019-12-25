@@ -20,6 +20,8 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+import api from './api/index'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -32,6 +34,8 @@ import * as filters from './filters' // global filters
 // if (process.env.NODE_ENV === 'production') {
 //   mockXHR()
 // }
+
+Vue.prototype.$api = api
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size

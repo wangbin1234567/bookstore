@@ -124,6 +124,115 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/examination',
+    component: Layout,
+    redirect: '/examination/addTest',
+    name: 'Examination',
+    meta: {
+      title: '考试管理',
+      icon: 'skill'
+    },
+    children: [{
+      path: 'addTest',
+      component: () => import('@/views/examination/addTest'),
+      meta: { title: '添加考试' }
+    },
+    {
+      path: 'examList',
+      component: () => import('@/views/examination/examList'),
+      meta: { title: '试卷列表' }
+    },
+    {
+      path: 'detailTest',
+      component: () => import('@/views/examination/detailTest')
+    },
+    {
+      path: 'createTest',
+      component: () => import('@/views/examination/createTest')
+    }]
+  },
+  {
+    path: '/grades',
+    component: Layout,
+    redirect: '/grades/grade',
+    name: 'grades',
+    meta: {
+      title: '班级管理',
+      icon: 'tree-table'
+    },
+    children: [
+      {
+        path: 'grade',
+        component: () => import('@/views/grades/grade'),
+        name: 'grade',
+        meta: { title: '班级管理' }
+      },
+      {
+        path: 'room',
+        component: () => import('@/views/grades/room'),
+        name: 'room',
+        meta: { title: '教室管理' }
+      },
+      {
+        path: 'student',
+        component: () => import('@/views/grades/student'),
+        name: 'student',
+        meta: { title: '学生管理' }
+      }
+    ]
+  },
+  {
+    path: '/paper',
+    component: Layout,
+    redirect: '/paper/classlist',
+    name: 'paper',
+    alwaysShow: true,
+    meta: {
+      title: '阅卷管理',
+      icon: 'tree-table'
+    },
+    children: [
+      {
+        path: 'classlist',
+        component: () => import('@/views/paper/classlist'),
+        name: 'classlist',
+        meta: { title: '待批班级' }
+      },
+      {
+        path: 'classmate',
+        component: () => import('@/views/paper/classmate'),
+        name: 'classmate'
+      },
+      {
+        path: 'detail',
+        component: () => import('@/views/paper/detail'),
+        name: 'detail'
+      }
+    ]
+  },
+  {
+    path: '/management',
+    component: Layout,
+    redirect: '/management/Add',
+    // alwaysShow: true,
+    name: 'Management',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'Adduser',
+        component: () => import('@/views/management/add_user'),
+        name: 'Add',
+        meta: { title: '添加用户' }
+      },
+      {
+        path: 'listUser',
+        component: () => import('@/views/management/list-user'),
+        name: 'List',
+        meta: { title: '用户展示' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [
