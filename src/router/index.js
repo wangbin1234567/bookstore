@@ -84,6 +84,46 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/questions',
+    component: Layout,
+    name: 'Questions',
+    meta: { title: '试题管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-questions',
+        component: () => import('@/views/questions/add-questions'),
+        name: 'Addquestions',
+        meta: { title: '添加考试' }
+      },
+      {
+        path: 'classify-questions',
+        component: () => import('@/views/questions/classify-questions'),
+        name: 'classifyQuestions',
+        meta: { title: '考试分类' }
+      },
+      {
+        path: 'examine-questions',
+        component: () => import('@/views/questions/examine-questions'),
+        name: 'ExamineQuestions',
+        meta: { title: '查看试题' }
+      },
+      {
+        path: 'update-questions',
+        component: () => import('@/views/questions/update-questions'),
+        hidden: true,
+        name: 'UpdateQuestions',
+        meta: { title: '编辑试题' }
+      },
+      {
+        path: 'questions-detail',
+        component: () => import('@/views/questions/questions-detail'),
+        hidden: true,
+        name: 'questionsDetail',
+        meta: { title: '试题详情' }
+      }
+    ]
+  },
+  {
     path: '/grades',
     component: Layout,
     redirect: '/grades/grade',
@@ -330,34 +370,6 @@ export const asyncRoutes = [
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
         meta: { title: 'uploadExcel' }
-      }
-    ]
-  },
-  {
-    path: '/questions',
-    component: Layout,
-    redirect: '/questions/add-questions',
-    alwaysShow: true,
-    name: 'Questions',
-    meta: { title: '试题管理', icon: 'zip' },
-    children: [
-      {
-        path: 'add-questions',
-        component: () => import('@/views/questions/add-questions'),
-        name: 'Addquestions',
-        meta: { title: '添加考试' }
-      },
-      {
-        path: 'classify-questions',
-        component: () => import('@/views/questions/classify-questions'),
-        name: 'classifyQuestions',
-        meta: { title: '考试分类' }
-      },
-      {
-        path: 'examine-questions',
-        component: () => import('@/views/questions/examine-questions'),
-        name: 'ExamineQuestions',
-        meta: { title: '查看试题' }
       }
     ]
   },

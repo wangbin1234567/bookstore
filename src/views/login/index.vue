@@ -208,7 +208,6 @@ export default {
       });
     },
     getOtherQuery(query) {
-
       delete query.redirect;
       return query;
     }
