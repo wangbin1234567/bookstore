@@ -27,7 +27,6 @@
           autocomplete="on"
         />
       </el-form-item>
-
       <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
@@ -86,8 +85,6 @@
 </template>
 
 <script>
-
-// import { validUsername } from '@/utils/validate'
 import { mapActions } from "vuex"
 // import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
@@ -98,6 +95,7 @@ export default {
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
+      //验证
       if (!value) {
         callback(new Error("Please enter the correct user name"));
       } else {
@@ -110,7 +108,6 @@ export default {
       // }
     };
     const validatePassword = (rule, value, callback) => {
-      
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {

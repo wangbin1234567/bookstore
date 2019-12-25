@@ -32,7 +32,8 @@ const actions = {
   // user login
   async login({ commit }, userInfo) {
     const { username, password } = userInfo
-    const res = await login({ user_name: username, user_pwd: password })
+    let res = await login({user_name: username, user_pwd: password})
+    console.log(res,"res........")
     setToken(res.token)
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
@@ -48,6 +49,7 @@ const actions = {
   async userInfoss() {
     const res = await userInfoss()
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+    console.log('res老骥伏枥==============', res)
   },
   // get user info
   getInfo({ commit }) {
@@ -56,10 +58,7 @@ const actions = {
       commit('SET_ROLES', roles)
       resolve({ roles })
       // getInfo(state.token).then(response => {
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
-      //   const { roles, name, avatar, introduction } = data
+      //   const { data } = response
       //   if (!data) {
       //     reject('Verification failed, please Login again.')
       //   }
@@ -68,9 +67,6 @@ const actions = {
       //   if (!roles || roles.length <= 0) {
       //     reject('getInfo: roles must be a non-null array!')
       //   }
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   commit('SET_INTRODUCTION', introduction)
       //   commit('SET_NAME', name)
       //   commit('SET_AVATAR', avatar)
       //   commit('SET_INTRODUCTION', introduction)
