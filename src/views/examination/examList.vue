@@ -8,6 +8,7 @@
         <div class="test-list">
             <div class="test-type">
                 <li>考试类型：</li>
+
                 <!-- 考试类型的展示 -->
                 <el-select v-model="typeValue" placeholder="请选择">
                     <ExamTypes></ExamTypes>
@@ -100,7 +101,17 @@ export default {
   },
   created() {
         this.getExam()
-        // this.getW5tcy()
+        //时间戳转为标准时间，标准时间转为日期格式
+        this.start_time=this.examList.map((item,index)=>{
+            let date=new Date(parseInt(item.start_time,10))
+            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' +date.getMinutes() + ':' + date.getSeconds()
+        })
+        console.log(this.start_time)
+        this.end_time=this.examList.map((item,index)=>{
+            let date=new Date(parseInt(item.end_time,10))
+            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' +date.getMinutes() + ':' + date.getSeconds()
+        })
+        console.log(this.end_time)
   },
 };
 </script>

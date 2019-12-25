@@ -9,10 +9,10 @@
                 <div class="ant-layout-content">
                     <!-- 添加按钮 -->
                     <el-button plain @click="tabMask">添加新题</el-button>
-                    <!-- <ExamMask v-model="isTrue"></ExamMask> -->
+                    <!-- <ExamMask v-model="isTrue" @click.native="tabMask"></ExamMask> -->
                     <div class="style_exam__2rgl0">
                         <h2>{{title}}</h2>
-                        <p>考试时间:1小时30分钟  监考人:{{user_name}} 开始时间:{{start_time}} 阅卷人:{{user_name}}</p>
+                        <p>考试时间:1小时30分钟  监考人:开始时间:{{start_time}}阅卷人:</p>
                         <span class="style_juan__nAupa"></span>
                         <TestList></TestList>
                     </div>
@@ -42,9 +42,9 @@ export default {
     data(){
         return {
             name:"创建考试",
-            title:localStorage.getItem("addTest").title||[],
-            start_time:localStorage.getItem("addTest").start_time||[],
-            user_name:localStorage.getItem("addTest").questions[0].user_name||[],
+            title:localStorage.getItem("addTest").title||"",
+            start_time:localStorage.getItem("addTest").start_time||"",
+            // user_name:localStorage.getItem("addTest").questions[0].user_name||[],
             isTrue:false
         }
     },
