@@ -5,7 +5,7 @@
             v-for="item in types"
             :key="item.exam_name"
             :label="item.exam_name"
-            :value="item.exam_name"
+            :value="item.exam_id"
         ></el-option>
     </div>
 </template>

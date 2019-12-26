@@ -5,7 +5,7 @@
             v-for="item in course"
             :key="item.subject_text"
             :label="item.subject_text"
-            :value="item.subject_text"
+            :value="item.subject_id"
         ></el-option>
     </div>
 </template>
