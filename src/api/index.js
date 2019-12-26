@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+
 //添加用户接口
 export function register(data){
     console.log(data,'=>>>>>>>>=---');
@@ -9,7 +10,7 @@ export function register(data){
         data
     })
 }
-//添加身份
+//添加身份/user/identity
 export function AddShen(params){    
     return request({
         url:"/user/identity/edit",
@@ -17,6 +18,13 @@ export function AddShen(params){
         params
     })
 }
+export function USER_List(){    
+    return request({
+        url:"/user/user",
+        method:"get",
+    })
+}
+
 //添加api接口权限
 export function permissions(data){
     console.log(data,"====-------???????");
@@ -45,7 +53,7 @@ export function jurisdictionAdd(data){
 //选择身份id
 export function userList(){
     return request({
-        url:"/user/identity_api_authority_relation",
+        url:"/user/identity",
         method:"get"
     })
 }
@@ -65,3 +73,12 @@ export function Apijurisdiction(){
         method:"get"
     })
 }
+
+export function setIdentityView(data){
+    return request({
+        url:"/user/setIdentityView",
+        method:"post",
+        data
+    })
+}
+
