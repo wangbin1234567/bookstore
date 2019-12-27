@@ -100,8 +100,17 @@ export default {
       } else {
         callback();
       }
+<<<<<<< HEAD
      
     };
+=======
+      // if (!validUsername(value)) {
+      //   callback(new Error('Please enter the correct user name'))
+      // } else {
+      //   callback()
+      // }
+    }
+>>>>>>> jyh
     const validatePassword = (rule, value, callback) => {
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
@@ -150,13 +159,14 @@ export default {
     } else if (this.loginForm.password === "") {
       this.$refs.password.focus();
     }
+    
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
     ...mapActions({
-      userInfoss: "user/userInfoss"
+        userInfo:'user/userInfo'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -186,10 +196,10 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.loading = true;
+          this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfoss()
+            await this.userInfo()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {
@@ -203,8 +213,19 @@ export default {
       });
     },
     getOtherQuery(query) {
+<<<<<<< HEAD
       delete query.redirect;
       return query;
+=======
+      // return Object.keys(query).reduce((acc, cur) => {
+      //   if (cur !== 'redirect') {
+      //     acc[cur] = query[cur]
+      //   }
+      //   return acc
+      // }, {});
+      delete query.redirect
+      return query
+>>>>>>> jyh
     }
   }
 };

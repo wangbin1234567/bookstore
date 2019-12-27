@@ -125,8 +125,9 @@ export default {
       },
        handleDelete(index, row) {
         console.log(index, row);
-        deleteStudent(row.student_id)
-        this.getStudent()
+        deleteStudent(row.student_id).then(()=>{
+           this.getStudent()
+        })
       },
       handleSizeChange(val){
         this.pageSize=val
