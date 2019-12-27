@@ -52,7 +52,6 @@ export default {
           inputPlaceholder:"请输入类型"
         }).then(({value})=>{
           this.valueConent=value
-          console.log(value)
         })
       }
   },
@@ -104,6 +103,7 @@ export default {
       }
     }
   }
+  
   .ant-color{
     background: #ccc!important;
   }

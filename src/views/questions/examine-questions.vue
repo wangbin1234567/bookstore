@@ -68,7 +68,7 @@ export default {
       estConditionList: state => state.test.estConditionList
     })
   },
-  methods: {
+  methods:{
     ...mapActions({
       testGenre: "test/testGenre",
       testSubject: "test/testSubject",
@@ -83,13 +83,11 @@ export default {
       }else{
         this.curIndex=index
       }
-      
       console.log(index)
     },
     onSubmit() {
       let formInline=this.formInline
-      let subject= this.testSubjectList[this.curIndex].subject_id
-      formInline.subjects=subject
+      formInline.subjects= this.testSubjectList[this.curIndex]?this.testSubjectList[this.curIndex].subject_id:''
       console.log(formInline)
       this.testInquire(formInline)
     },
@@ -135,7 +133,7 @@ export default {
 .list_color{
   background: #0139FD;
   color: #ffff;
-  padding: 4px;
+  
 }
 .ant-layout-content {
   flex: auto;
@@ -196,6 +194,7 @@ export default {
       li {
         float: left;
         margin: 0 10px;
+       padding: 4px;
       }
     }
   }
