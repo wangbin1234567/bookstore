@@ -51,9 +51,9 @@
               <span size="medium">{{scope.row.status?"已阅":"未阅"}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="成材率">
+          <el-table-column label="成绩">
             <template slot-scope="scope">
-              <span size="medium">{{scope.row.score>=90?"及格":"不及格"}}</span>
+              <span size="medium">{{scope.row.score}}</span>
             </template>
           </el-table-column>
           <el-table-column label="操作">

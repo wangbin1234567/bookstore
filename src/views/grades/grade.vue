@@ -7,7 +7,7 @@
     >
       <div class="style_container__2hI6B" style="padding: 0px;">
         <div class="style_buttons__z2xtt">
-          <button class="ant-btn-primary" @click="handleAddGrade">添加班级</button>
+          <button class="ant-btn-primary" @click="handleAddGrade('ruleForm')">添加班级</button>
         </div>
         <el-table :data="gradeList" style="width: 100%">
           <el-table-column label="班级名">
@@ -98,14 +98,11 @@ export default {
     }
   },
   methods: {
-    handleAddGrade(){
+    handleAddGrade(formName){
       this.dialogFormVisible = true
       this.title="添加班级"
       this.disabled=false
-      this.ruleForm.name=""
-      this.ruleForm.region=""
-      this.ruleForm.desc=""
-      this.ruleForm.id=""
+      this.$refs[formName].resetFields()
     },
     handleEdit(index, row) {
       console.log(index, row);
@@ -119,13 +116,14 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
-      deleteGrade(row.grade_id)
-      this.getGrade()
+      deleteGrade(row.grade_id).then(()=>{
+          this.getGrade()
+      })
     },
     handleConfirm(formName){
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            // alert('submit!');
             if(this.title=="添加班级"){
                let params={ }
             params.grade_name	=this.ruleForm.name

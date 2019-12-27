@@ -1,7 +1,7 @@
 import { getStudentPage } from '@/api/detail'
 
 const state = {
-    studentPageList: []
+    studentPageList: {}
   }
   
   const mutations = {

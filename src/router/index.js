@@ -83,7 +83,7 @@ export const constantRoutes = [
       }
     ]
   },
-   {
+  {
     path: '/grades',
     component: Layout,
     redirect: '/grades/grade',
@@ -145,6 +145,28 @@ export const constantRoutes = [
 },
 
   {
+    path: '/management',
+    component: Layout,
+    redirect: '/management/Add',
+    // alwaysShow: true,
+    name: 'Management',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'Adduser',
+        component: () => import('@/views/management/add_user'),
+        name: 'Add',
+        meta: { title: '添加用户' }
+      },
+      {
+        path: 'listUser',
+        component: () => import('@/views/management/list-user'),
+        name: 'List',
+        meta: { title: '用户展示' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [
@@ -155,8 +177,7 @@ export const constantRoutes = [
         meta: { title: 'documentation', icon: 'documentation', affix: true }
       }
     ]
-  }, 
- 
+  },
   {
     path: '/guide',
     component: Layout,
@@ -221,7 +242,6 @@ export const asyncRoutes = [
           // if do not set roles, means: this page does not require permission
         }
       },
-    
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
@@ -233,7 +253,6 @@ export const asyncRoutes = [
       }
     ]
   },
- 
   {
     path: '/icon',
     component: Layout,
@@ -246,13 +265,11 @@ export const asyncRoutes = [
       }
     ]
   },
-
   /** when your routing map is too long, you can split it into small modules **/
   componentsRouter,
   chartsRouter,
   nestedRouter,
   tableRouter,
-
   {
     path: '/example',
     component: Layout,
@@ -284,7 +301,40 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/examination',
+    component: Layout,
+    redirect: "/examination/addTest",
+    name:"Examination",
+    meta: {
+      title: "考试管理",
+      icon: "skill"
+    },
+    children: [      
+          //添加考试  
+          {
+            path: "addTest",
+            component: () => import("@/views/examination/addTest"),
+            meta: { title: "添加考试"}
+          },
+          //考试列表
+          {
+            path: "examList",
+            component: () => import("@/views/examination/examList"),
+            meta: { title:"试卷列表"}
+          },
+          //详情
+          {
+            path:"detailTest",
+            component:()=> import("@/views/examination/detailTest")
+          },
+          //创建考试
+          {
+            path:"createTest",
+            component: () => import("@/views/examination/createTest")
+          }       
+    ]
+  },
   {
     path: '/tab',
     component: Layout,
@@ -297,7 +347,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/error',
     component: Layout,

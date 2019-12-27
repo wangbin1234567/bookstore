@@ -7,7 +7,7 @@
     >
       <div class="style_container__2hI6B" style="padding: 0px;">
         <div class="style_buttons__z2xtt">
-          <button class="ant-btn-primary" @click="handleAddGrade">添加教室</button>
+          <button class="ant-btn-primary" @click="handleAddGrade('ruleForm')">添加教室</button>
         </div>
         <el-table :data="roomList" style="width: 100%">
           <el-table-column label="教室号">
@@ -41,6 +41,7 @@
     <el-button type="primary" @click="handleConfirm('ruleForm')">确 定</el-button>
   </div>
 </el-dialog>
+
   </div>
 </template>
 
@@ -67,19 +68,39 @@ export default {
     }
   },
   methods: {
-    handleAddGrade(){
+    handleAddGrade(formName){
       this.dialogFormVisible = true
-      this.ruleForm.name=""
+      this.$refs[formName].resetFields()
     },
     handleDelete(index, row) {
       console.log(index, row);
-      deleteRoom(row.room_id)
-      this.getRoom()
+      // deleteRoom(row.room_id)
+      // this.getRoom()
+       this.$confirm('确定要删除此教室吗?',{
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true,
+          showClose: false
+        }).then(() => {
+        deleteRoom(row.room_id).then(()=>{
+           this.getRoom()
+        })
+          this.$message({
+            type: 'success',
+            message: '删除成功'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
     },
     handleConfirm(formName){
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            // alert('submit!');
             let params={ }
             params.room_text=this.ruleForm.name+""
             createRoom(params).then(res=>{

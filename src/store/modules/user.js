@@ -52,8 +52,11 @@ const actions = {
     console.log('res老骥伏枥==============', res)
   },
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit }) {
     return new Promise((resolve, reject) => {
+      const roles = ['admin']
+      commit('SET_ROLES', roles)
+      resolve({ roles })
       // getInfo(state.token).then(response => {
       //   const { data } = response
       //   if (!data) {
@@ -64,13 +67,10 @@ const actions = {
       //   if (!roles || roles.length <= 0) {
       //     reject('getInfo: roles must be a non-null array!')
       //   }
-        const roles=["admin"]
-        commit('SET_ROLES', roles)
       //   commit('SET_NAME', name)
       //   commit('SET_AVATAR', avatar)
       //   commit('SET_INTRODUCTION', introduction)
       //   resolve(data)
-      resolve({roles})
       // }).catch(error => {
       //   reject(error)
       // })
