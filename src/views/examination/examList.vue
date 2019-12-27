@@ -8,6 +8,7 @@
         <div class="test-list">
             <div class="test-type">
                 <li>考试类型：</li>
+
                 <!-- 考试类型的展示 -->
                 <el-select v-model="typeValue" placeholder="请选择">
                     <ExamTypes></ExamTypes>
@@ -18,6 +19,7 @@
                 <el-select v-model="courseValue" placeholder="请选择">
                     <ExamCourse></ExamCourse>
                 </el-select>
+
                 <!-- 查询按钮的展示 -->
                 <el-button type="primary" icon="el-icon-search">查询</el-button>
             </div>
@@ -39,7 +41,7 @@
                 <el-table-column prop="grade_name" label="班级"></el-table-column>            
                 <el-table-column prop="user_name" label="创建人"></el-table-column>
                 <el-table-column prop="start_time" label="开始时间"></el-table-column>
-                 <el-table-column prop="end_time" label="结束时间"></el-table-column>
+                <el-table-column prop="end_time" label="结束时间"></el-table-column>
                 <el-table-column prop="status" label="操作">
                     <span style="color: #409eff" @click="tabDetail">详情</span>
                 </el-table-column>              
@@ -75,8 +77,8 @@ export default {
         title:"",//试卷信息
         user_name:"",//创建人
         grade_name:"",//班级
-        start_time:"",//开始时间
-        end_time:"",//结束时间
+        start_time:null,//开始时间
+        end_time:null,//结束时间
         status:""//操作
     }
   },
@@ -100,7 +102,17 @@ export default {
   },
   created() {
         this.getExam()
-        // this.getW5tcy()
+
+        //时间戳转为标准时间，标准时间转为日期格式
+        this.start_time=this.examList.map((item,index)=>{
+            return new Date(parseInt(item.start_time,10)).toLocaleString()
+        })
+        // console.log(this.examList)
+        console.log(this.start_time)
+        this.end_time=this.examList.map((item,index)=>{
+           return new Date(parseInt(item.end_time,10)).toLocaleString()           
+        })
+        // console.log(this.end_time)
   },
 };
 </script>

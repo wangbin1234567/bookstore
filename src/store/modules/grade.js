@@ -1,12 +1,20 @@
 import { getGrade } from '@/api/grade'
 
 const state = {
-    gradeList: []
+    gradeList: [],
+    gradeListItem: []
   }
-  
+  function formatgradeList(data){
+    let str=[]
+    data.map(item=>{
+      str.push(item.grade_name)
+    }) 
+    return str    
+  }
   const mutations = {
     ADD_ERROR_LOG: (state, payload) => {
       state.gradeList=payload
+      state.gradeListItem=formatgradeList(payload)
     }
   }
   

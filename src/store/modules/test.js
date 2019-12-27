@@ -1,4 +1,4 @@
-import { testManagement, testGenre, testSubject, addTestPort, addQuestionsType, testCondition, testInquire, addNewExam } from '@/api/test'
+import { testManagement, testGenre, testSubject, addTestPort, addQuestionsType, testCondition, testInquire, addNewExam, questionsUpdate } from '@/api/test'
 const state = {
   testList: [],
   testGenreList: [],
@@ -35,12 +35,12 @@ const actions = {
   async addTestPort({ commit }, payload) {
     const data = {
       questions_type_id: payload.total.value2,
-      questions_stem: payload.total.input,
+      questions_stem: payload.total.textarea1,
       subject_id: payload.total.value1,
       exam_id: payload.total.value,
       user_id: payload.total.userId,
       questions_answer: payload.total.textarea2,
-      title: payload.total.textarea1
+      title: payload.total.input
     }
     const res = await addTestPort(data)
     console.log('res老骥伏枥===================', res)
@@ -67,11 +67,24 @@ const actions = {
     }
     const res = await testInquire(params)
     commit('setTestCondition', res.data)
-    console.log('res你好-----', res)
   },
   async addNewExam() {
     const res = await addNewExam()
     console.log('res我爱你----------', res)
+  },
+  async questionsUpdate({ commit }, payload) {
+    const data = {
+      questions_type_id: payload.total.value2,
+      questions_stem: payload.total.textarea1,
+      subject_id: payload.total.value1,
+      exam_id: payload.total.value,
+      questions_id: payload.total.questions_id,
+      questions_answer: payload.total.textarea2,
+      title: payload.total.input
+    }
+    console.log('payload老冀', payload)
+    const res = await questionsUpdate(data)
+    console.log('res冀志民', res)
   }
 }
 export default {

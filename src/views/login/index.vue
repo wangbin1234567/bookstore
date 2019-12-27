@@ -76,19 +76,16 @@
 
     <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog">
       {{ $t('login.thirdpartyTips') }}
-      <br />
-      <br />
-      <br />
+      <br>
+      <br>
+      <br>
       <social-sign />
     </el-dialog>
   </div>
 </template>
 
 <script>
-
-// import { validUsername } from '@/utils/validate'
 import { mapActions } from "vuex"
-// import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 
@@ -97,25 +94,30 @@ export default {
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
+      //验证
       if (!value) {
         callback(new Error("Please enter the correct user name"));
       } else {
         callback();
       }
+<<<<<<< HEAD
+     
+    };
+=======
       // if (!validUsername(value)) {
       //   callback(new Error('Please enter the correct user name'))
       // } else {
       //   callback()
       // }
-    };
+    }
+>>>>>>> jyh
     const validatePassword = (rule, value, callback) => {
-      
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       loginForm: {
         username: "chenmanjie",
@@ -157,13 +159,14 @@ export default {
     } else if (this.loginForm.password === "") {
       this.$refs.password.focus();
     }
+    
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
     ...mapActions({
-      userInfoss: "user/userInfoss"
+        userInfo:'user/userInfo'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -193,10 +196,10 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.loading = true;
+          this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfoss()
+            await this.userInfo()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {
@@ -210,37 +213,24 @@ export default {
       });
     },
     getOtherQuery(query) {
+<<<<<<< HEAD
+      delete query.redirect;
+      return query;
+=======
       // return Object.keys(query).reduce((acc, cur) => {
       //   if (cur !== 'redirect') {
       //     acc[cur] = query[cur]
       //   }
       //   return acc
       // }, {});
-      delete query.redirect;
-      return query;
+      delete query.redirect
+      return query
+>>>>>>> jyh
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 };
 </script>
-
+loginForm
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */

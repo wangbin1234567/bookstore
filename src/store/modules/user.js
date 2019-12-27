@@ -1,4 +1,4 @@
-import { login, logout, userInfoss } from '@/api/user'
+import { login, logout, userInfo} from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -33,6 +33,7 @@ const actions = {
   async login({ commit }, userInfo) {
     const { username, password } = userInfo
     const res = await login({ user_name: username, user_pwd: password })
+    console.log(res)
     setToken(res.token)
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
@@ -45,43 +46,26 @@ const actions = {
     //   })
     // })
   },
-  async userInfoss() {
-    const res = await userInfoss()
+<<<<<<< HEAD
+=======
+  async userInfo() {
+    const res = await userInfo()
     sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+    console.log('res老骥伏枥==============', res)
   },
   // get user info
+>>>>>>> jyh
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       const roles = ['admin']
       commit('SET_ROLES', roles)
       resolve({ roles })
-      // getInfo(state.token).then(response => {
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
-      //   const { roles, name, avatar, introduction } = data
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
-      //   const { roles, name, avatar, introduction } = data
-      //   // roles must be a non-empty array
-      //   if (!roles || roles.length <= 0) {
-      //     reject('getInfo: roles must be a non-null array!')
-      //   }
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   commit('SET_INTRODUCTION', introduction)
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   commit('SET_INTRODUCTION', introduction)
-      //   resolve(data)
-      // }).catch(error => {
-      //   reject(error)
-      // })
     })
   },
-
-  // user logout
+  async userInfoss() {
+    const res = await userInfoss()
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data))
+  },
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
