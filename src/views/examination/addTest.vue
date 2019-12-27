@@ -86,7 +86,7 @@
                         <!-- 创建试卷按钮 -->
                         <div class="ant-form-item">
                             <div class="ant-form-item-control">
-                                <button class="ant-btn-primary" @click="createExams()">创建试卷</button>
+                                <button class="ant-btn-primary" @click="createExams">创建试卷</button>
                             </div>
                         </div>
                     </div>                  
@@ -98,7 +98,7 @@
 <script>
 //引入头部组件
 import PublicHeader from "@/components/publicHeader/index"
-import {mapActions,mapState} from "vuex"
+import {mapActions} from "vuex"
 //引入考试类型组件
 import ExamTypes from "@/components/examTypes/index"
 //引入课程组件
@@ -108,11 +108,6 @@ export default {
          PublicHeader,
          ExamTypes,
          ExamCourse
-    },
-    computed:{
-         ...mapState({
-             course:state=>state.examSubject.course,
-         })
     },
     data(){
         return {
@@ -157,16 +152,17 @@ export default {
         }),
         //点击创建试卷按钮
         createExams(){
+            // window.open('','_self').close()
             let data={
                 subject_id:this.subject_id,//学科
-                exam_id:this.exam_id,//试卷类型
+                exam_id:this.exam_id,//试卷类型id
                 title:this.title,//试卷标题
                 start_time:this.start_time,//开始时间
                 end_time:this.end_time,//结束时间
                 number:this.number  //题量
-            }
+            }           
             this.CreateExam(data)
-            localStorage.setItem("addTest",data)
+            //判断都有值的情况跳转到创建考试页面
             if(this.subject_id!=""&&this.exam_id!=""&&this.title!=""&&this.start_time!=""&&this.end_time!=""&&this.number!=""){
                 this.$router.push("createTest")
             }
@@ -210,6 +206,7 @@ export default {
     height:32px;
     background:#fff;
     padding:4px 11px;
+    border:1px solid #ccc;
 }
 .ant-form-item-control{
     width:100%;

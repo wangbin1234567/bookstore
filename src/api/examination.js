@@ -30,3 +30,10 @@ export function getW5tcy() {
     method: 'get'
   })
 }
+export function delG2dts() {
+  return request({
+    url: '/exam/exam/w5tcy-g2dts',
+    method: 'delete'
+  })
+}
+

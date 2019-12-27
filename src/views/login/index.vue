@@ -150,13 +150,14 @@ export default {
     } else if (this.loginForm.password === "") {
       this.$refs.password.focus();
     }
+    
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
     ...mapActions({
-      userInfoss: "user/userInfoss"
+        userInfo:'user/userInfo'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -186,10 +187,10 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.loading = true;
+          this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfoss()
+            await this.userInfo()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {

@@ -1,14 +1,13 @@
 <template>
     <div>
-        <div class="style_questionitem__3ETlC">
-            <h4>找出考试结果数组中排名前三的学生  <a href="" style="float:right">删除</a> </h4>
+        <!-- 考试题目列表 -->
+        <div class="style_questionitem__3ETlC" v-for="(item,index) in testList.questions" :key="index">
+            <h4>{{item.title}}  <a href="" style="float:right" @click="delItem(item)">删除</a> </h4>
             <div class="react-markdown">
-                <p>使用一个循环找出考试结果数组中排名前三的学生</p>
+                <p>{{item.questions_type_text}}</p>
                 <pre>
                     <code>
-                        var types = ["红桃", "黑桃", "方块", "梅花"]; // 花色
-                        var points = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]; // 点数
-                        var cards = ["大王", "小王"]; // 所有扑克牌
+                        {{item.questions_stem}}
                     </code>
                 </pre>
             </div>
@@ -16,7 +15,21 @@
     </div>
 </template>
 <script>
+import {mapActions} from "vuex"
 export default {
+    data(){
+        return {
+            testList:JSON.parse(localStorage.getItem("addTest")).data
+        }
+    },
+    methods:{
+        ...mapActions({
+            delG2dts:"examDel/delG2dts"
+        }),
+        delItem(item){
+            this.delG2dts(item)
+        }
+    }
 }
 </script>
 <style scoped >

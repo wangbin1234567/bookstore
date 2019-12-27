@@ -1,52 +1,19 @@
 <template>
   <div class="ant-layout">
     <h2>阅卷</h2>
-    {{studentPageList}}
+    <div class="box">
     <div
       class="ant-layout-content"
-      style="background: rgb(255, 255, 255); padding: 24px; margin: 0px 0px 20px; border-radius: 10px;"
+      style="background: rgb(255, 255, 255); padding: 24px;border-radius: 10px;"
     >
-      <div class="style_container__2hI6B" style="padding: 0px;">
-        <el-table :data="gradeList.slice((currentPage-1)*pageSize,currentPage*pageSize)" style="width: 100%">
-          <el-table-column label="班级名">
-            <template slot-scope="scope">
-              <span>{{ scope.row.grade_name }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="课程名">
-            <template slot-scope="scope">
-              <span size="medium">{{ scope.row.subject_text }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="教室号">
-            <template slot-scope="scope">
-              <span size="medium">{{ scope.row.room_text }}</span>
-            </template>
-          </el-table-column> 
-          <el-table-column label="阅卷状态">
-            <template slot-scope="scope">
-              <span size="medium">未阅</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作">
-            <template slot-scope="scope">
-              <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">批卷</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-
-        <div class="block">
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[5, 10, 20, 50, 100]"
-      :page-size="pageSize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="gradeList.length">
-    </el-pagination>
+     <span>{{studentPageList.student_name}}</span> 
+    </div> 
+    <div class="style_container__2hI6B">
+         <div class="block">
+    <el-slider v-model="value2" show-input :show-input-controls="flag"></el-slider>
   </div>
-      </div>
+     <el-button type="primary" @click="open6">确定</el-button>
+     </div>
     </div>
   </div>
 </template>
@@ -57,39 +24,40 @@ export default {
   computed: {
     //获取数据
     ...mapState({
-      gradeList: state=>state.grade.gradeList,
       studentPageList: state=>state.detail.studentPageList
     })
   },
   data() {
     return {
-        currentPage: 1,
-        pageSize: 10
+           value2: 0,
+           flag: false
     };
   },
   methods: {
     ...mapActions({
-      getGrade: "grade/getGrade",
       getStudentPage: "detail/getStudentPage"
     }),
-       handleDelete(index, row) {
-        console.log(index, row);
-        let grade_id=row.grade_id
-        this.$router.push({path: "/paper/classmate",
-        query: {
-           grade_id
-        }
-       })
-      },
-      handleSizeChange(val){
-        this.pageSize=val
-      },
-      handleCurrentChange(val){
-         this.currentPage=val
+     open6() {
+        this.$confirm(`分数值是${this.value2}`, '确定提交阅卷结果吗?',{
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: '',
+          center: true,
+          showClose: false
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '提交成功'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消提交'
+          });
+        });
       }
   },
   mounted() {
-    this.getGrade()
     this.getStudentPage(this.$route.query.exam_student_id)
   }
 };
@@ -112,15 +80,15 @@ export default {
     height: 71px;
   }
   .ant-layout-content {
-    flex: auto;
-    min-height: 0;
+    width: 70%;
   }
 }
 .style_container__2hI6B {
   background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 24px;
-  margin: 0 0 20px;
+  width: 30%;
+  margin-left: 10px;
 }
 .style_buttons__z2xtt {
   height: 40px;
@@ -136,5 +104,8 @@ export default {
   font-size: 14px;
   color: #fff;
   background: linear-gradient(-90deg, #4e75ff, #0139fd);
+}
+.box{
+  display: flex;
 }
 </style>
