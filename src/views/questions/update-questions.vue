@@ -241,6 +241,7 @@ export default {
 }
 .ant-form-item-label {
   margin: 20px 0 10px;
+  
 }
 .for-editor {
   width: 100%;
