@@ -5,6 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import { access } from 'fs';
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -27,14 +28,28 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     } else {
       // determine whether the user has obtained his permission roles through getInfo
+    //   const hasViewAuthority = store.state.user.viewAuthority && store.state.user.viewAuthority.length > 0
+    //   if(hasViewAuthority){
+    //         next()
+    //   }else{
+    //         try {
+    //             const viewAuthority=await store.dispatch("user/getInfo")
+    //             const accessRoutes=await store.dispatch('permission/generateRoutes', viewAuthority)
+    //             router.addRoutes(accessRoutes)
+    //             next({...to,replace:true})
+    //         }catch(error){
+    //             console.log("error...",error)
+    //         }
+    //   }
+
+
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
-      console.log('hasRoles---------------------', store.getters.roles)
-      // console.log(hasRoles)
+    //   console.log('hasRoles---------------------', store.getters.roles)
+    //   console.log(hasRoles)
       if (hasRoles) {
         next()
       } else {
         try {
-          console.log(12412515)
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const { roles } = await store.dispatch('user/getInfo')

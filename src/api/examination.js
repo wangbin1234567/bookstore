@@ -34,14 +34,14 @@ export function getSubject(){
 //获取试卷详情
 export function getW5tcy(){
     return request({
-        url:"/exam/exam/w5tcy-g2dts",
+        url:"/exam/exam",
         method:"get",
     })
 }
 //删除试卷
 export function delG2dts(){
     return request({
-        url:"/exam/exam/w5tcy-g2dts",
+        url:"/exam/exam",
         method:"delete"
     })
 }

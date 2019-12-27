@@ -11,7 +11,7 @@
                     <el-button plain @click="tabMask">添加新题</el-button>
                     <!-- <ExamMask v-model="isTrue" @click.native="tabMask"></ExamMask> -->
                     <div class="style_exam__2rgl0">
-                        <h2>{{title}}</h2>
+                        <h2 v-if="title">{{title}}</h2>
                         <p>考试时间:1小时30分钟  监考人:{{user_name}}开始时间:{{start_time}}阅卷人:{{user_name}}</p>
                         <span class="style_juan__nAupa"></span>
                         <TestList></TestList>
@@ -61,7 +61,7 @@ export default {
         },
         //点击跳转到详情页面
         tabDetail(){
-             this.$router.push("detailTest")
+             this.$router.push("examList")
         }
     },
     created(){

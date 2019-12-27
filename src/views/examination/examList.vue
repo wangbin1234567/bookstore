@@ -77,7 +77,7 @@ export default {
         title:"",//试卷信息
         user_name:"",//创建人
         grade_name:"",//班级
-        start_time:null,//开始时间
+        // start_time:null,//开始时间
         end_time:null,//结束时间
         status:""//操作
     }
@@ -86,7 +86,7 @@ export default {
       ...mapState({
             examList:state=>state.getExam.examList,
             detailList:state=>State.examDetail.detailList,
-            
+            start_time:state=>state.getExam.start_time
       })
   },
   methods: {
@@ -104,11 +104,11 @@ export default {
         this.getExam()
 
         //时间戳转为标准时间，标准时间转为日期格式
-        this.start_time=this.examList.map((item,index)=>{
-            return new Date(parseInt(item.start_time,10)).toLocaleString()
-        })
-        // console.log(this.examList)
-        console.log(this.start_time)
+        // this.start_time=this.examList.map((item,index)=>{
+        //     return new Date(parseInt(item.start_time,10)).toLocaleString()
+        // })
+        // // console.log(this.examList)
+        // console.log(this.start_time)
         this.end_time=this.examList.map((item,index)=>{
            return new Date(parseInt(item.end_time,10)).toLocaleString()           
         })

@@ -1,7 +1,7 @@
 import {getW5tcy} from "@/api/examination.js"
 const state = {
     //详情列表数据
-    detailList:""
+    detailList:{}
 }
 
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
 const actions = {
    async getW5tcy({commit},payload){
        let res = await getW5tcy(payload)
-       commit("updateW5tcy",res.data)
+       commit("updateW5tcy",res)
    }
 }
 

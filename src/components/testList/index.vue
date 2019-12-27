@@ -2,7 +2,7 @@
     <div>
         <!-- 考试题目列表 -->
         <div class="style_questionitem__3ETlC" v-for="(item,index) in testList.questions" :key="index">
-            <h4>{{item.title}}  <a href="" style="float:right" @click="delItem(item)">删除</a> </h4>
+            <h4>{{item.title}}  <a href="" style="float:right" @click="delItem(item.questions_type_id)">删除</a> </h4>
             <div class="react-markdown">
                 <p>{{item.questions_type_text}}</p>
                 <pre>
@@ -26,8 +26,9 @@ export default {
         ...mapActions({
             delG2dts:"examDel/delG2dts"
         }),
-        delItem(item){
-            this.delG2dts(item)
+        delItem(questions_type_id){
+            console.log(questions_type_id,".....")
+            this.delG2dts(questions_type_id)
         }
     }
 }

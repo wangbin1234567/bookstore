@@ -7,7 +7,7 @@
         <el-main>
             <div class="style_detailContent__1Cb53">
                 <div class="ant-layout-content">
-                    <div class="style_exam__2fYLs"></div>
+                    <div class="style_exam__2fYLs">{{detailList}}</div>
                 </div>
                 <div class="ant-layout-content">
                     <div class="style_exam__2fYLs"></div>
@@ -35,7 +35,7 @@ export default {
     },
     computed:{
       ...mapState({
-            detailList:state=>State.examDetail.detailList,
+            detailList:state=>state.examDetail.detailList,
       })
     },
     methods:{
