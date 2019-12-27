@@ -41,7 +41,7 @@
                 <el-table-column prop="grade_name" label="班级"></el-table-column>            
                 <el-table-column prop="user_name" label="创建人"></el-table-column>
                 <el-table-column prop="start_time" label="开始时间"></el-table-column>
-                 <el-table-column prop="end_time" label="结束时间"></el-table-column>
+                <el-table-column prop="end_time" label="结束时间"></el-table-column>
                 <el-table-column prop="status" label="操作">
                     <span style="color: #409eff" @click="tabDetail">详情</span>
                 </el-table-column>              
