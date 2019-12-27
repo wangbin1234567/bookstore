@@ -15,7 +15,7 @@ export function getExam(){
     })
 }
 
-//考试类型
+//考试类型列表
 export function getExamType(){
     return request({
         url:"/exam/examType",
@@ -23,7 +23,7 @@ export function getExamType(){
     })
 }
 
-//所有课程
+//课程列表
 export function getSubject(){
     return request({
         url:"/exam/subject",
@@ -38,3 +38,11 @@ export function getW5tcy(){
         method:"get",
     })
 }
+//删除试卷
+export function delG2dts(){
+    return request({
+        url:"/exam/exam/w5tcy-g2dts",
+        method:"delete"
+    })
+}
+

@@ -1,12 +1,12 @@
 import {getW5tcy} from "@/api/examination.js"
 const state = {
+    //详情列表数据
     detailList:""
 }
 
 const mutations = {
     updateW5tcy(state,payload){
     state.detailList=payload
-    // window.console.log(state.detailList,"-----list")
     },
 }
 
