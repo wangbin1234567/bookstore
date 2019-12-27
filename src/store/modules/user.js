@@ -46,15 +46,6 @@ const actions = {
     //   })
     // })
   },
-<<<<<<< HEAD
-=======
-  async userInfo() {
-    const res = await userInfo()
-    sessionStorage.setItem('userInfo', JSON.stringify(res.data))
-    console.log('res老骥伏枥==============', res)
-  },
-  // get user info
->>>>>>> jyh
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       const roles = ['admin']

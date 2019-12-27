@@ -100,17 +100,8 @@ export default {
       } else {
         callback();
       }
-<<<<<<< HEAD
      
     };
-=======
-      // if (!validUsername(value)) {
-      //   callback(new Error('Please enter the correct user name'))
-      // } else {
-      //   callback()
-      // }
-    }
->>>>>>> jyh
     const validatePassword = (rule, value, callback) => {
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
@@ -213,10 +204,6 @@ export default {
       });
     },
     getOtherQuery(query) {
-<<<<<<< HEAD
-      delete query.redirect;
-      return query;
-=======
       // return Object.keys(query).reduce((acc, cur) => {
       //   if (cur !== 'redirect') {
       //     acc[cur] = query[cur]
@@ -225,7 +212,6 @@ export default {
       // }, {});
       delete query.redirect
       return query
->>>>>>> jyh
     }
   }
 };
