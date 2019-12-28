@@ -68,7 +68,7 @@ export default {
       estConditionList: state => state.test.estConditionList
     })
   },
-  methods: {
+  methods:{
     ...mapActions({
       testGenre: "test/testGenre",
       testSubject: "test/testSubject",
@@ -83,7 +83,6 @@ export default {
       }else{
         this.curIndex=index
       }
-      
       console.log(index)
     },
     onSubmit() {
@@ -134,7 +133,7 @@ export default {
 .list_color{
   background: #0139FD;
   color: #ffff;
-  padding: 4px;
+  
 }
 .ant-layout-content {
   flex: auto;
@@ -195,6 +194,7 @@ export default {
       li {
         float: left;
         margin: 0 10px;
+       padding: 4px;
       }
     }
   }

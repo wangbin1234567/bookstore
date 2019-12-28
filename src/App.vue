@@ -96,6 +96,7 @@ header{
       font-variant: tabular-nums;
     }
 }
+
  .el-dropdown-menu{
       width: 117px;
       background: #fff;
