@@ -88,8 +88,7 @@ export default {
     },
     onSubmit() {
       let formInline=this.formInline
-      let subject= this.testSubjectList[this.curIndex].subject_id
-      formInline.subjects=subject
+      formInline.subjects= this.testSubjectList[this.curIndex]?this.testSubjectList[this.curIndex].subject_id:''
       console.log(formInline)
       this.testInquire(formInline)
     },

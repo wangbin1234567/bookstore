@@ -10,7 +10,7 @@
           </el-form-item>
            <el-form-item prop="desc" label="班级">
             <el-select v-model="ruleForm.desc" placeholder="请选择班级">
-               <el-option :label="val" :value="val" v-for="(val,ind) in gradeListItem" :key="ind"></el-option>
+               <el-option :label="val.grade_name" :value="val.grade_id" v-for="(val,ind) in gradeListItem" :key="ind"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
@@ -28,7 +28,7 @@
         <el-table :data="studentMateList.slice((currentPage-1)*pageSize,currentPage*pageSize)" style="width: 100%">
             <el-table-column label="班级">
             <template slot-scope="scope">
-              <span size="medium">{{ scope.row.grade_name }}</span>
+              <span size="medium">{{ gradeChecked }}</span>
             </template>
           </el-table-column>
           <el-table-column label="姓名">
@@ -80,20 +80,20 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   computed: {
     //获取数据
     ...mapState({
       studentMateList: state=>state.classmate.studentMateList,
       gradeListItem: state=>state.grade.gradeListItem,
-      statusList: state=>state.classmate.statusList 
+      statusList: state=>state.classmate.statusList,
+      gradeChecked: state=>state.grade.gradeChecked
     })
   },
   data() {
     return {
         ruleForm: {
-          user: '',
           region: '',
           desc: ''
         },
@@ -102,6 +102,9 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+       getGradeChecked: "grade/getGradeChecked"
+    }),
     ...mapActions({
       getStudentMate: "classmate/getStudentMate",
       getGrade: "grade/getGrade"
@@ -110,8 +113,7 @@ export default {
         console.log('submit!');
         if(this.ruleForm.user||this.ruleForm.region||this.ruleForm.desc){
                  let params={ }
-            params.student_name	=this.ruleForm.user
-            params.room_text=this.ruleForm.region
+            params.status=this.ruleForm.region
             params.grade_name=this.ruleForm.desc 
            this.searchStudent(params)
         }else{
@@ -141,6 +143,7 @@ export default {
   mounted() {
     this.getGrade()
     this.getStudentMate(this.$route.query.grade_id)
+    this.getGradeChecked(this.$route.query.grade_id)
   }
 };
 </script>
