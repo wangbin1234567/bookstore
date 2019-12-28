@@ -55,6 +55,8 @@ export default {
 .detailTest-box{
     width:100%;
     background: #f0f2f5;
+    height:auto;
+    overflow-y: scroll;
 }
 .style_detailContent__1Cb53{
     display: flex;

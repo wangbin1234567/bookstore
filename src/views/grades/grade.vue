@@ -7,7 +7,7 @@
     >
       <div class="style_container__2hI6B" style="padding: 0px;">
         <div class="style_buttons__z2xtt">
-          <button class="ant-btn-primary" @click="handleAddGrade">添加班级</button>
+          <button class="ant-btn-primary" @click="handleAddGrade('ruleForm')">添加班级</button>
         </div>
         <el-table :data="gradeList" style="width: 100%">
           <el-table-column label="班级名">
@@ -38,7 +38,7 @@
 <el-dialog :title="title" :visible.sync="dialogFormVisible">
   <el-form :model="ruleForm" :label-position="labelPosition" :rules="rules" ref="ruleForm">
     <el-form-item label="班级名" :style="{width: formLabelWidth}" prop="name">
-      <el-input v-model="ruleForm.name" placeholder="班级名" :disabled="disabled"></el-input>
+      <el-input v-model="ruleForm.name" placeholder="班级名" :disabled="disabled" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item label="教室号" prop="region">
       <el-select v-model="ruleForm.region" placeholder="请选择教室号" :style="{width: formLabelWidth}">
@@ -86,26 +86,23 @@ export default {
         formLabelWidth: '70%',
          rules: {
           name: [
-            { required: true, message: '请输入班级名', trigger: 'blur' }
+            { required: true, message: '请输入班级名' }
           ],
           region: [
             { required: true, message: '请选择教室号' }
           ],
           desc: [
-            { required: true, message: '请选择课程名', trigger: 'change' }
+            { required: true, message: '请选择课程名' }
           ]
         }
     }
   },
   methods: {
-    handleAddGrade(){
+    handleAddGrade(formName){
       this.dialogFormVisible = true
       this.title="添加班级"
       this.disabled=false
-      this.ruleForm.name=""
-      this.ruleForm.region=""
-      this.ruleForm.desc=""
-      this.ruleForm.id=""
+      this.$refs[formName].resetFields()
     },
     handleEdit(index, row) {
       console.log(index, row);
@@ -119,30 +116,33 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
-      let grade_id=row.grade_id
-      deleteGrade(grade_id)
+      deleteGrade(row.grade_id).then(()=>{
+          this.getGrade()
+      })
     },
     handleConfirm(formName){
       this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            // alert('submit!');
             if(this.title=="添加班级"){
                let params={ }
             params.grade_name	=this.ruleForm.name
             params.room_id=this.ruleForm.region
             params.subject_id=this.ruleForm.desc 
-            createGrade(params)
-            this.getGrade()
+            createGrade(params).then(res=>{
+               this.getGrade()
+            })
             }else{
                let params ={}
             params.grade_name	=this.ruleForm.name
             params.room_id=this.ruleForm.region
             params.subject_id=this.ruleForm.desc  
             params.grade_id=this.ruleForm.id  
-            updateGrade(params) 
-            this.getGrade()
+            updateGrade(params).then(res=>{
+               this.getGrade()
+            }) 
             }
-            this.dialogFormVisible = false
+            this.dialogFormVisible = false 
           } else {
             console.log('error submit!!');
             return false;

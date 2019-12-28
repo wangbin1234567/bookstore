@@ -43,14 +43,14 @@
         </form>
       </div>
       <div class="container_botton_content">
-          <div class="container_botton_left" v-for="(item,index) in estConditionList" :key="index">
+          <div class="container_botton_left" v-for="(item,index) in estConditionList" :key="index" @click.stop="questionsDetail(item)">
               <div>
                 <h5>{{item.title}}</h5>
                 <p><span  class="span_color span_border">{{item.questions_type_text}}</span><span  class="span_color span_border">{{item.subject_text}}</span><span class="spam_color_type">{{item.exam_name}}</span></p>
                 <p><span class="span_color">{{item.user_name}}</span><span class="span_color">发布</span></p>
               </div>
               <div class="bianji">
-                <a href="" class="span_color">编辑</a>
+                <span class="span_color" @click.stop="detailsContent(item)">编辑</span>
               </div>
           </div>
       </div>
@@ -68,7 +68,7 @@ export default {
       estConditionList: state => state.test.estConditionList
     })
   },
-  methods: {
+  methods:{
     ...mapActions({
       testGenre: "test/testGenre",
       testSubject: "test/testSubject",
@@ -83,15 +83,21 @@ export default {
       }else{
         this.curIndex=index
       }
-      
       console.log(index)
     },
     onSubmit() {
       let formInline=this.formInline
-      let subject= this.testSubjectList[this.curIndex].subject_id
-      formInline.subjects=subject
+      formInline.subjects= this.testSubjectList[this.curIndex]?this.testSubjectList[this.curIndex].subject_id:''
       console.log(formInline)
       this.testInquire(formInline)
+    },
+    detailsContent(cont){
+      sessionStorage.setItem('detailsContent',JSON.stringify(cont))
+      this.$router.push("/questions/update-questions")
+    },
+    questionsDetail(item){
+       sessionStorage.setItem('questionsDetail',JSON.stringify(item))
+      this.$router.push("/questions/questions-detail")
     }
   },
   mounted() {
@@ -127,7 +133,7 @@ export default {
 .list_color{
   background: #0139FD;
   color: #ffff;
-  padding: 4px;
+  
 }
 .ant-layout-content {
   flex: auto;
@@ -188,6 +194,7 @@ export default {
       li {
         float: left;
         margin: 0 10px;
+       padding: 4px;
       }
     }
   }

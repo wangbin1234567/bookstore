@@ -1,19 +1,22 @@
 import {CreateExam} from "@/api/examination.js"
 const state = {
     //存放参数
-    data:""
+    data:{}
 }
 
 const mutations = {
     updateExam(state,payload){
-    state.data=payload
+        // console.log(payload,"...payload")
+        state.data=payload
     },
 }
 
 const actions = {
-   async CreateExam({commit},payload){
+   async CreateExam({commit},payload){       
        let res = await CreateExam(payload)
-       commit("updateExam",res)
+    //    console.log(res,'res......')
+       localStorage.setItem("addTest",JSON.stringify(res))
+       commit("updateExam",res.data)
    }
 }
 

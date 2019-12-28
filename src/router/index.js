@@ -136,45 +136,194 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/documentation',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'guide', icon: 'guide', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'profile', icon: 'user', noCache: true }
-      }
-    ]
-  }
+  // {
+  //   path: '/questions',
+  //   component: Layout,
+  //   name: 'Questions',
+  //   meta: { title: '试题管理', icon: 'zip' },
+  //   children: [
+  //     {
+  //       path: 'add-questions',
+  //       component: () => import('@/views/questions/add-questions'),
+  //       name: 'Addquestions',
+  //       meta: { title: '添加考试' }
+  //     },
+  //     {
+  //       path: 'classify-questions',
+  //       component: () => import('@/views/questions/classify-questions'),
+  //       name: 'classifyQuestions',
+  //       meta: { title: '考试分类' }
+  //     },
+  //     {
+  //       path: 'examine-questions',
+  //       component: () => import('@/views/questions/examine-questions'),
+  //       name: 'ExamineQuestions',
+  //       meta: { title: '查看试题' }
+  //     },
+  //     {
+  //       path: 'update-questions',
+  //       component: () => import('@/views/questions/update-questions'),
+  //       hidden: true,
+  //       name: 'UpdateQuestions',
+  //       meta: { title: '编辑试题' }
+  //     },
+  //     {
+  //       path: 'questions-detail',
+  //       component: () => import('@/views/questions/questions-detail'),
+  //       hidden: true,
+  //       name: 'questionsDetail',
+  //       meta: { title: '试题详情' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/examination',
+  //   component: Layout,
+  //   redirect: '/examination/addTest',
+  //   name: 'Examination',
+  //   meta: {
+  //     title: '考试管理',
+  //     icon: 'skill'
+  //   },
+  //   children: [{
+  //     path: 'addTest',
+  //     component: () => import('@/views/examination/addTest'),
+  //     meta: { title: '添加考试' }
+  //   },
+  //   {
+  //     path: 'examList',
+  //     component: () => import('@/views/examination/examList'),
+  //     meta: { title: '试卷列表' }
+  //   },
+  //   {
+  //     path: 'detailTest',
+  //     component: () => import('@/views/examination/detailTest')
+  //   },
+  //   {
+  //     path: 'createTest',
+  //     component: () => import('@/views/examination/createTest')
+  //   }]
+  // },
+  // {
+  //   path: '/grades',
+  //   component: Layout,
+  //   redirect: '/grades/grade',
+  //   name: 'grades',
+  //   meta: {
+  //     title: '班级管理',
+  //     icon: 'tree-table'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'grade',
+  //       component: () => import('@/views/grades/grade'),
+  //       name: 'grade',
+  //       meta: { title: '班级管理' }
+  //     },
+  //     {
+  //       path: 'room',
+  //       component: () => import('@/views/grades/room'),
+  //       name: 'room',
+  //       meta: { title: '教室管理' }
+  //     },
+  //     {
+  //       path: 'student',
+  //       component: () => import('@/views/grades/student'),
+  //       name: 'student',
+  //       meta: { title: '学生管理' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/paper',
+  //   component: Layout,
+  //   redirect: '/paper/classlist',
+  //   name: 'paper',
+  //   alwaysShow: true,
+  //   meta: {
+  //     title: '阅卷管理',
+  //     icon: 'tree-table'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'classlist',
+  //       component: () => import('@/views/paper/classlist'),
+  //       name: 'classlist',
+  //       meta: { title: '待批班级' }
+  //     },
+  //     {
+  //       path: 'classmate',
+  //       component: () => import('@/views/paper/classmate'),
+  //       name: 'classmate'
+  //     },
+  //     {
+  //       path: 'detail',
+  //       component: () => import('@/views/paper/detail'),
+  //       name: 'detail'
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/management',
+  //   component: Layout,
+  //   redirect: '/management/Add',
+  //   // alwaysShow: true,
+  //   name: 'Management',
+  //   meta: { title: '用户管理', icon: 'user' },
+  //   children: [
+  //     {
+  //       path: 'Adduser',
+  //       component: () => import('@/views/management/add_user'),
+  //       name: 'Add',
+  //       meta: { title: '添加用户' }
+  //     },
+  //     {
+  //       path: 'listUser',
+  //       component: () => import('@/views/management/list-user'),
+  //       name: 'List',
+  //       meta: { title: '用户展示' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/documentation/index'),
+  //       name: 'Documentation',
+  //       meta: { title: 'documentation', icon: 'documentation', affix: true }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/guide',
+  //   component: Layout,
+  //   redirect: '/guide/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/guide/index'),
+  //       name: 'Guide',
+  //       meta: { title: 'guide', icon: 'guide', noCache: true }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/profile',
+  //   component: Layout,
+  //   redirect: '/profile/index',
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/profile/index'),
+  //       name: 'Profile',
+  //       meta: { title: 'profile', icon: 'user', noCache: true }
+  //     }
+  //   ]
+  // }
 ]
 
 /**
@@ -272,40 +421,6 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/examination',
-    component: Layout,
-    redirect: "/examination/addTest",
-    name:"Examination",
-    meta: {
-      title: "考试管理",
-      icon: "skill"
-    },
-    children: [      
-          //添加考试  
-          {
-            path: "addTest",
-            component: () => import("@/views/examination/addTest"),
-            meta: { title: "添加考试"}
-          },
-          //考试列表
-          {
-            path: "examList",
-            component: () => import("@/views/examination/examList"),
-            meta: { title:"试卷列表"}
-          },
-          //详情
-          {
-            path:"detailTest",
-            component:()=> import("@/views/examination/detailTest")
-          },
-          //创建考试
-          {
-            path:"createTest",
-            component: () => import("@/views/examination/createTest")
-          }       
-    ]
-  },
-  {
     path: '/tab',
     component: Layout,
     children: [
@@ -387,34 +502,6 @@ export const asyncRoutes = [
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
         meta: { title: 'uploadExcel' }
-      }
-    ]
-  },
-  {
-    path: '/questions',
-    component: Layout,
-    redirect: '/questions/add-questions',
-    alwaysShow: true,
-    name: 'Questions',
-    meta: { title: '试题管理', icon: 'zip' },
-    children: [
-      {
-        path: 'add-questions',
-        component: () => import('@/views/questions/add-questions'),
-        name: 'Addquestions',
-        meta: { title: '添加考试' }
-      },
-      {
-        path: 'classify-questions',
-        component: () => import('@/views/questions/classify-questions'),
-        name: 'classifyQuestions',
-        meta: { title: '考试分类' }
-      },
-      {
-        path: 'examine-questions',
-        component: () => import('@/views/questions/examine-questions'),
-        name: 'ExamineQuestions',
-        meta: { title: '查看试题' }
       }
     ]
   },
@@ -507,7 +594,165 @@ export const asyncRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
-
+export const authorityRoutes = [
+  {
+    path: '/questions',
+    component: Layout,
+    name: 'Questions',
+    redirect: '/questions/add-questions',
+    meta: { title: '试题管理', icon: 'zip' },
+    children: [
+      {
+        path: 'add-questions',
+        component: () => import('@/views/questions/add-questions'),
+        name: 'Addquestions',
+        meta: { title: '添加考试',view_id: "main-addQuestions" }
+      },
+      {
+        path: 'classify-questions',
+        component: () => import('@/views/questions/classify-questions'),
+        name: 'classifyQuestions',
+        meta: { title: '考试分类',view_id: "main-questionsType" }
+      },
+      {
+        path: 'examine-questions',
+        component: () => import('@/views/questions/examine-questions'),
+        name: 'ExamineQuestions',
+        meta: { title: '查看试题',view_id: "main-watchQuestions" }
+      },
+      {
+        path: 'update-questions',
+        component: () => import('@/views/questions/update-questions'),
+        hidden: true,
+        name: 'UpdateQuestions',
+        meta: { title: '编辑试题',view_id: "main-editQuestions" }
+      },
+      {
+        path: 'questions-detail',
+        component: () => import('@/views/questions/questions-detail'),
+        hidden: true,
+        name: 'questionsDetail',
+        meta: { title: '试题详情',view_id: "main-questionsDetail" }
+      }
+    ]
+  },
+  {
+    path: '/management',
+    component: Layout,
+    redirect: '/management/Add',
+    // alwaysShow: true,
+    name: 'Management',
+    meta: { title: '用户管理', icon: 'user' },
+    children: [
+      {
+        path: 'Adduser',
+        component: () => import('@/views/management/add_user'),
+        name: 'Add',
+        meta: { title: '添加用户',view_id: "main-addUser" }
+      },
+      {
+        path: 'listUser',
+        component: () => import('@/views/management/list-user'),
+        name: 'List',
+        meta: { title: '用户展示',view_id: "main-showUser" }
+      }
+    ]
+  },
+  {
+    path: '/examination',
+    component: Layout,
+    redirect: '/examination/addTest',
+    name: 'Examination',
+    meta: {
+      title: '考试管理',
+      icon: 'skill'
+    },
+    children: [{
+      path: 'addTest',
+      component: () => import('@/views/examination/addTest'),
+      meta: { title: '添加考试' ,view_id: "main-addExam"}
+    },
+    {
+      path: 'examList',
+      component: () => import('@/views/examination/examList'),
+      meta: { title: '试卷列表',view_id: "main-questionsDetail" }
+    },
+    {
+      path: 'detailTest',
+      component: () => import('@/views/examination/detailTest'),
+      hidden: true,
+      meta: { title: '' ,view_id: "main-examinationPapersssss"},
+      
+    },
+    {
+      path: 'createTest',
+      component: () => import('@/views/examination/createTest'),
+      hidden: true,
+      meta: { title: '' ,view_id: "main-menu"}
+    }]
+  },
+  {
+    path: '/grades',
+    component: Layout,
+    redirect: '/grades/grade',
+    name: 'grades',
+    meta: {
+      title: '班级管理',
+      icon: 'tree-table'
+    },
+    children: [
+      {
+        path: 'grade',
+        component: () => import('@/views/grades/grade'),
+        name: 'grade',
+        meta: { title: '班级管理',view_id: "main-grade" }
+      },
+      {
+        path: 'room',
+        component: () => import('@/views/grades/room'),
+        name: 'room',
+        meta: { title: '教室管理' ,view_id: "main-room"}
+      },
+      {
+        path: 'student',
+        component: () => import('@/views/grades/student'),
+        name: 'student',
+        meta: { title: '学生管理' ,view_id: "main-student"}
+      }
+    ]
+  },
+  {
+    path: '/paper',
+    component: Layout,
+    redirect: '/paper/classlist',
+    name: 'paper',
+    alwaysShow: true,
+    meta: {
+      title: '阅卷管理',
+      icon: 'tree-table'
+    },
+    children: [
+      {
+        path: 'classlist',
+        component: () => import('@/views/paper/classlist'),
+        name: 'classlist',
+        meta: { title: '待批班级' ,view_id: "main-examPaperClassList"}
+      },
+      {
+        path: 'classmate',
+        component: () => import('@/views/paper/classmate'),
+        hidden:true,
+        meta: { view_id: "main-examPaperClassmate"}
+      },
+      {
+        path: 'detail',
+        component: () => import('@/views/paper/detail'),
+        hidden:true,
+        meta: { view_id: "main-examinationPapers"}
+      }
+    ]
+  }
+]
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),

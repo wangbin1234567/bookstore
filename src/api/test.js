@@ -48,3 +48,10 @@ export function addNewExam() {
     method: 'GET'
   })
 }
+export function questionsUpdate(data) {
+  return request({
+    url: '/exam/questions/update',
+    method: 'PUT',
+    data
+  })
+}
