@@ -230,20 +230,34 @@ export default {
       submitForm() {
         let username = this.ruleForm.user_name;
         let userpwd = this.ruleForm.user_pwd;
-        let identity_id = this.ruleForm.identity_id
-        let data = this.userId_list.filter(item => item.identity_text == identity_id)
-        let identity_id_List = data[0].identity_id
         
+        // console.log('====================================');
+        // console.log(identity_id_List,'res.log');
+        // console.log('====================================');
         // user_name: "songzhiwei", user_pwd: "Wangbin123!", identity_id: "uf81yn-hv8uvv"
-        register({ user_name:username, user_pwd:userpwd,identity_id:identity_id_List}).then(res => {
-          console.log(res);
-        })
+        if(username == "" || userpwd == ""){
+            alert("用户内容不能为空")
+          }else{
+            let identity_id = this.ruleForm.identity_id
+            let data = this.userId_list.filter(item => item.identity_text == identity_id)
+            let identity_id_List = data[0].identity_id
+            register(
+              { user_name:username, user_pwd:userpwd, identity_id: identity_id_List}
+            ).then(res => {
+              console.log(res);
+            })
+          }
       },
       //添加身份
       Addshen(){
-        AddShen({ identity_text: this.ruleForm.shen }).then(res =>{
-          console.log(res);
-        })
+        if(this.ruleForm.shen == ""){
+          alert("身份不能为空");
+        }else{
+          AddShen({ identity_text: this.ruleForm.shen }).then(res =>{
+            console.log(res);
+          })
+        }
+        
       },
       //添加api接口
       AddPermissions(){
@@ -254,7 +268,7 @@ export default {
           { 
             api_authority_text: api_authority_text, 
             api_authority_url: api_authority_url, 
-            api_authority_method: api_authority_method 
+            api_authority_method: api_authority_method
           }
         ).then(res => {
           console.log(res);

@@ -157,7 +157,7 @@ export default {
   },
   methods: {
     ...mapActions({
-        userInfo:'user/userInfo'
+        userInfoss:'user/userInfoss'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -190,7 +190,7 @@ export default {
           this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfo()
+            await this.userInfoss()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {
