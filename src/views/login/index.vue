@@ -100,8 +100,12 @@ export default {
       } else {
         callback();
       }
-     
-    };
+      // if (!validUsername(value)) {
+      //   callback(new Error('Please enter the correct user name'))
+      // } else {
+      //   callback()
+      // }
+    }
     const validatePassword = (rule, value, callback) => {
       if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
@@ -157,7 +161,7 @@ export default {
   },
   methods: {
     ...mapActions({
-        userInfo:'user/userInfo'
+        userInfoss:'user/userInfoss'
     }),
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
@@ -190,7 +194,7 @@ export default {
           this.loading = true
           try {
             await this.$store.dispatch('user/login', this.loginForm)
-            await this.userInfo()
+            await this.userInfoss()
             this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             
           } catch (e) {
@@ -204,8 +208,14 @@ export default {
       });
     },
     getOtherQuery(query) {
-      delete query.redirect;
-      return query;
+      // return Object.keys(query).reduce((acc, cur) => {
+      //   if (cur !== 'redirect') {
+      //     acc[cur] = query[cur]
+      //   }
+      //   return acc
+      // }, {});
+      delete query.redirect
+      return query
     }
   }
 };
