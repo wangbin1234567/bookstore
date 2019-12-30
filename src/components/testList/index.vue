@@ -28,7 +28,7 @@ export default {
         }),
         delItem(questions_type_id){
             console.log(questions_type_id,".....")
-            this.delG2dts(questions_type_id)
+            // this.delG2dts(questions_type_id)
         }
     }
 }

@@ -7,103 +7,54 @@
             </el-header>
             <el-main>
                 <div class="ant-layout-content">
-                    <!-- 试卷名称 -->
-                    <el-form  label-width="120px" class="demo-dynamic">
-                        <el-form-item
-                            prop="title"
-                            label="试卷名称"
-                            :rules="[
-                            { required: true, message: '请输入试卷名称', trigger: 'blur' },
-                            {type:''}
-                            ]"
-                        >
-                            <el-input v-model="title"></el-input>
+                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-dynamic">
+
+                        <!-- 试卷名称 -->
+                        <el-form-item label="试卷名称" prop="title">
+                            <el-input v-model="ruleForm.title"></el-input>
+                        </el-form-item>
+
+                        <!-- 考试类型 -->
+                        <el-form-item label="选择试卷类型" prop="exam_id">
+                            <el-select v-model="ruleForm.exam_id" >
+                                <!-- 试卷类型组件的展示 -->
+                                <ExamTypes></ExamTypes>
+                            </el-select>
+                        </el-form-item>
+
+                        <!-- 选择课程 -->
+                        <el-form-item label="选择课程" prop="subject_id">
+                            <el-select v-model="ruleForm.subject_id">
+                                <!-- 课程组件的展示 -->
+                                <ExamCourse></ExamCourse>
+                            </el-select>
+                        </el-form-item>
+
+                        <!-- 题量 -->
+                        <el-form-item label="题量" prop="number">
+                            <el-input-number v-model="ruleForm.number" :min="3" :max="10" controls-position="right"></el-input-number>
+                        </el-form-item>
+
+                        <!-- 时间 -->
+                        <el-form-item label="考试时间">
+                            <el-col :span="11">
+                                <el-form-item prop="start_time">
+                                    <el-date-picker type="date" value-format="timestamp" placeholder="开始时间" v-model="ruleForm.start_time"></el-date-picker>
+                                </el-form-item>
+                            </el-col>
+                            <el-col class="line" :span="2">-</el-col>
+                            <el-col :span="11">
+                                <el-form-item prop="end_time">
+                                     <el-date-picker type="date" value-format="timestamp" placeholder="结束时间" v-model="ruleForm.end_time"></el-date-picker>
+                                </el-form-item>
+                            </el-col>
+                        </el-form-item>
+
+                        <!-- 创建试卷按钮 -->
+                        <el-form-item>
+                            <el-button type="primary" @click="createExams('ruleForm')">创建试卷</el-button>
                         </el-form-item>
                     </el-form>
-                    <div class="ant-row">
-                        <!-- 考试类型 -->
-                        <el-form  label-width="120px" class="demo-dynamic">
-                            <el-form-item
-                                prop="exam_id"
-                                label="选择试卷类型"
-                                :rules="[
-                                { required: true, message: '请输入考试类型', trigger: 'blur' },
-                                {type:''}
-                                ]"
-                            >
-                                <el-select class="ant-select-selection-single" v-model="exam_id" placeholder="">
-                                    <!-- 试卷类型组件的展示 -->
-                                    <ExamTypes></ExamTypes>
-                                </el-select> 
-                            </el-form-item>
-                        </el-form>
-
-                        <el-form  label-width="120px" class="demo-dynamic">
-                            <el-form-item
-                                prop="subject_id"
-                                label="选择课程"
-                                :rules="[
-                                { required: true, message: '请输入课程', trigger: 'blur' },
-                                {type:''}
-                                ]"
-                            >
-                                <el-select class="ant-select-selection-single" v-model="subject_id"  placeholder="">
-                                    <!-- 课程组件的展示 -->
-                                    <ExamCourse></ExamCourse>
-                                </el-select>
-                            </el-form-item>
-                        </el-form>
-                        <!-- 题量 -->
-                        <el-form  label-width="120px" class="demo-dynamic">
-                        <el-form-item
-                            prop="number"
-                            label="设置题量"
-                            :rules="[
-                            { required: true, message: '请输入数量', trigger: 'blur' },
-                            {type:'number'}
-                            ]"
-                        >
-                            <el-input-number v-model="number" :min="3" :max="10" controls-position="right"></el-input-number>
-                        </el-form-item>
-                        </el-form>
-                        <!-- 时间 -->
-
-                        <el-form  label-width="120px" class="demo-dynamic">
-                            <el-form-item
-                                prop="start_time"
-                                label="考试时间"
-                                :rules="[
-                                { required: true, message: '请输入开始时间', trigger: 'blur' },
-                                {type:''}
-                                ]"
-                            >
-                                <el-date-picker v-model="start_time"
-                                    value-format="timestamp"
-                                    placeholder="开始时间">
-                                </el-date-picker>
-                            </el-form-item>
-                            <el-form-item
-                                prop="end_time"
-                                :rules="[
-                                { required: true, message: '请输入结束时间', trigger: 'blur' },
-                                {type:''}
-                                ]"
-                            >
-                                <el-date-picker v-model="end_time"
-                                    value-format="timestamp"
-                                    placeholder="结束时间">
-                                </el-date-picker>
-                            </el-form-item>
-                        </el-form>
-                         
-                        <!-- 创建试卷按钮 -->
-                        <div class="ant-form-item">
-                            <div class="ant-form-item-control">
-                                <button class="ant-btn-primary" @click="createExams">创建试卷</button>
-                            </div>
-                        </div>
-                        
-                    </div>                  
                 </div>
             </el-main>
         </el-container>
@@ -152,12 +103,35 @@ export default {
                     }
                 }]
         },
-        subject_id:"",//学科
-        exam_id:"",//试卷类型
-        title:"",//试卷标题
-        start_time:"",//开始时间
-        end_time:"",//结束时间
-        number:3,//题量 默认为3
+        ruleForm:{
+            subject_id:"",//学科
+            exam_id:"",//试卷类型
+            title:"",//试卷标题
+            start_time:"",//开始时间
+            end_time:"",//结束时间
+            number:3,//题量 默认为3
+            },
+            //提示信息
+            rules:{
+                title:[
+                    {required:true,message:'请输入试卷名称',trigger:'blur'},
+                ],
+                exam_id:[
+                    {required:true,message:'请选择试卷类型',trigger:'change'},
+                ],
+                subject_id:[
+                    {required:true,message:'请选择课程',trigger:'change'},
+                ],
+                number:[
+                    {type:'number',required:true,message:'请选择题量',trigger:'change'}
+                ],
+                start_time:[
+                    {type:'date',required:true,message:"请选择开始时间",trigger:'change'}
+                ],
+               end_time:[
+                    {type:'date',required:true,message:"请选择结束时间",trigger:'change'}
+                ]
+            }
         }
     },
     methods:{
@@ -166,28 +140,22 @@ export default {
         }),
 
         //点击创建试卷按钮
-        createExams(){
-            // window.open('','_self').close()
+        createExams(formName){
             let data={
-                subject_id:this.subject_id,//学科
-                exam_id:this.exam_id,//试卷类型id
-                title:this.title,//试卷标题
-                start_time:this.start_time,//开始时间
-                end_time:this.end_time,//结束时间
-                number:this.number  //题量
+                subject_id:this.ruleForm.subject_id,//学科
+                exam_id:this.ruleForm.exam_id,//试卷类型id
+                title:this.ruleForm.title,//试卷标题
+                start_time:this.ruleForm.start_time,//开始时间
+                end_time:this.ruleForm.end_time,//结束时间
+                number:this.ruleForm.number  //题量
             }           
             this.CreateExam(data)
-
             //都输入，跳转到创建考试页面
-            if(data.title&&data.exam_id&&data.subject_id&&data.number&&data.start_time&&data.end_time){
-                this.isTitle=false
-                this.isExamId=false
-                this.isSubjectId=false
-                this.isStartTime=false
-                this.isEndTime=false
-                this.isNumber=false
-                this.$router.push("createTest")
-            }
+            this.$refs[formName].validate((valid)=>{
+                if(valid){
+                    this.$router.push("createTest")
+                }
+            })
         },
     },
 }
@@ -204,95 +172,5 @@ export default {
     border-radius: 10px;
     box-sizing: border-box;
 }
-.ant-row{
-    width:40%;
-    margin:0 -3px;
-    position: relative;
-    height:auto;
-    zoom: 1;
-    display: block;
-}
-.ant-form-item{
-    margin:0 0 24px;
-    height:78.4px;
-}
-.ant-form-item span{
-    color:red;
-}
-.ant-form-item-label{
-    height:39.2px;
-}
-.ant-form-item-required{
-    color:rgba(0,0,0,0.85);
-    font-size:14px;
-}
-.ant-form-item-required:before {
-    display: inline-block;
-    margin-right: 4px;
-    content: '*';
-    font-family: SimSun;
-    line-height: 1;
-    font-size: 14px;
-    color: #f5222d;
-}
-.ant-form-item-label label:after {
-    content: ':';
-    margin: 0 8px 0 2px;
-    position: relative;
-    top: -0.5px;
-}
-.ant-input{
-    width:100%;
-    height:32px;
-    background:#fff;
-    padding:4px 11px;
-    border:1px solid #ccc;
-}
-.ant-form-item-control{
-    width:100%;
-    height:39.2px;
-    display: flex;
-    align-items: center;
-}
-.ant-form-item-control span{
-    width:24px;
-    height:100%;
-    color:rgba(0,0,0,.65);
-    font-size:14px;
-    text-align: center;
-    line-height:39.2px;
-}
-.ant-select-selection-single{
-    width:35%;
-    height:32px;
-    background:#fff;
-    border-radius: 4px;
-    border:1px solid #d9d9d9;
-    border-top:1.02px solide #d9d9d9;
-}
-.ant-select-selection-single option{
-    width:100%;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-}
-.ant-select-selection_rendered{
-    height:29.6px;
-    margin:0 11px;
-    position: relative;
-}
 
-.ant-input-number-input{
-    height:38px;
-    background:#fff;
-}
-.ant-btn-primary{
-    height:32px;
-    padding: 0 40px;
-    border-radius: 4px;
-    border: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(-90deg,#4e75ff,#0139fd);
-}
 </style>
