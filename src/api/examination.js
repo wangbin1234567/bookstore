@@ -32,9 +32,9 @@ export function getSubject(){
 }
 
 //获取试卷详情
-export function getW5tcy(){
+export function getW5tcy(id){
     return request({
-        url:"/exam/exam",
+        url:`/exam/exam/${id}`,
         method:"get",
     })
 }

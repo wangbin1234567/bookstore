@@ -13,10 +13,10 @@ const mutations = {
 
 const actions = {
    async CreateExam({commit},payload){       
-       let res = await CreateExam(payload)
-    //    console.log(res,'res......')
-       localStorage.setItem("addTest",JSON.stringify(res))
-       commit("updateExam",res.data)
+        let res = await CreateExam(payload)
+        localStorage.removeItem("addTest",JSON.stringify(res))
+        localStorage.setItem("addTest",JSON.stringify(res))
+        commit("updateExam",res.data)
    }
 }
 

@@ -14,7 +14,7 @@ const mutations={
         state.start_time=state.examList.map((item)=>{
             return new Date(parseInt(item.start_time,10)).toLocaleString()
         })
-        console.log(state.start_time,"....starttime")
+        // console.log(state.start_time,"....starttime")
     }
 }
 const actions= {

@@ -10,12 +10,12 @@
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-dynamic">
 
                         <!-- 试卷名称 -->
-                        <el-form-item label="试卷名称" prop="title">
+                        <el-form-item label="试卷名称:" prop="title">
                             <el-input v-model="ruleForm.title"></el-input>
                         </el-form-item>
 
                         <!-- 考试类型 -->
-                        <el-form-item label="选择试卷类型" prop="exam_id">
+                        <el-form-item label="选择试卷类型:" prop="exam_id">
                             <el-select v-model="ruleForm.exam_id" >
                                 <!-- 试卷类型组件的展示 -->
                                 <ExamTypes></ExamTypes>
@@ -23,7 +23,7 @@
                         </el-form-item>
 
                         <!-- 选择课程 -->
-                        <el-form-item label="选择课程" prop="subject_id">
+                        <el-form-item label="选择课程:" prop="subject_id">
                             <el-select v-model="ruleForm.subject_id">
                                 <!-- 课程组件的展示 -->
                                 <ExamCourse></ExamCourse>
@@ -31,12 +31,12 @@
                         </el-form-item>
 
                         <!-- 题量 -->
-                        <el-form-item label="题量" prop="number">
+                        <el-form-item label="题量:" prop="number">
                             <el-input-number v-model="ruleForm.number" :min="3" :max="10" controls-position="right"></el-input-number>
                         </el-form-item>
 
                         <!-- 时间 -->
-                        <el-form-item label="考试时间">
+                        <el-form-item label="考试时间:">
                             <el-col :span="11">
                                 <el-form-item prop="start_time">
                                     <el-date-picker type="date" value-format="timestamp" placeholder="开始时间" v-model="ruleForm.start_time"></el-date-picker>
@@ -139,7 +139,7 @@ export default {
             CreateExam:"examination/CreateExam",
         }),
 
-        //点击创建试卷按钮
+        //点击创建试卷按钮  
         createExams(formName){
             let data={
                 subject_id:this.ruleForm.subject_id,//学科

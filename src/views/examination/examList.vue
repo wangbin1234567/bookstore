@@ -24,31 +24,36 @@
                 <el-button type="primary" icon="el-icon-search">查询</el-button>
             </div>
         </div>
-
-      <div class="test-typ">
-        <div class="head">
-            <li>试卷列表</li>
-            <div class="conent">
-                <el-button size="mini">全部</el-button>
-                <el-button size="mini">进行中</el-button>
-                <el-button size="mini">已结束</el-button>
+        <!-- <el-button @click="exportExcel">导出execl</el-button>
+        <el-button @click="importExcel">导入execl</el-button> -->
+        <div class="test-typ">
+            <div class="head">
+                <li>试卷列表</li>
+                <div class="conent">
+                    <el-button size="mini">全部</el-button>
+                    <el-button size="mini">进行中</el-button>
+                    <el-button size="mini">已结束</el-button>
+                </div>
+            </div>
+            <div class="main">
+                <!-- 列表的渲染与展示 -->
+                <el-table :data="examList" style="width: 100%" >
+                    <el-table-column prop="title" label="试卷信息"></el-table-column>
+                    <el-table-column prop="grade_name" label="班级"></el-table-column>            
+                    <el-table-column prop="user_name" label="创建人"></el-table-column>
+                    <el-table-column prop="start_time" label="开始时间"></el-table-column>
+                    <el-table-column prop="end_time" label="结束时间"></el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-button
+                            size="mini"
+                            @click="tabDetail(scope.$index, scope.row)">详情</el-button>                           
+                        </template>
+                        </el-table-column>
+                    
+                </el-table>
             </div>
         </div>
-        <div class="main">
-            <!-- 列表的渲染与展示 -->
-            <el-table :data="examList" style="width: 100%">
-                <el-table-column prop="title" label="试卷信息"></el-table-column>
-                <el-table-column prop="grade_name" label="班级"></el-table-column>            
-                <el-table-column prop="user_name" label="创建人"></el-table-column>
-                <el-table-column prop="start_time" label="开始时间"></el-table-column>
-                <el-table-column prop="end_time" label="结束时间"></el-table-column>
-                <el-table-column prop="status" label="操作">
-                    <span style="color: #409eff" @click="tabDetail">详情</span>
-                </el-table-column>              
-                   
-            </el-table>
-        </div>
-      </div>
     </section>
   </div>
 </template>
@@ -92,13 +97,40 @@ export default {
   methods: {
        ...mapActions({
             getExam:"getExam/getExam",
-            getW5tcy:"examDetail/getW5tcy"
+            // getW5tcy:"examDetail/getW5tcy"
         }),
         //点击详情按钮跳转到对应的详情页面
-        tabDetail(){
-            this.$router.push("detailTest")
-            this.getW5tcy()
-        }
+        tabDetail(index,row){
+            // console.log(row)
+            this.$router.push(`detailTest?id=${row.exam_exam_id}`)
+            // this.getW5tcy()
+        },
+        // exportExcel(){
+        //         var wb = XLSX.utils.book_new();
+        //         console.log(this.data,"keys...", Object.keys(this.data[0]))
+        //         var ws = XLSX.utils.json_to_sheet(this.data, {header:Object.keys(this.data[0])})
+        //         console.log("ws....", ws)
+        //         XLSX.utils.book_append_sheet(wb, ws, "examlist")
+        // },
+        // importExcel(e){
+        //         let file = e.target.files[0];
+        //         var reader = new FileReader()
+        //         reader.onload = (e) => {
+        //             var data = new Uint8Array(e.target.result);
+        //             var workbook = XLSX.read(data, {type: 'array'});
+        //             console.log("workbook...", workbook)
+                    
+        //             var worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        //             var json = XLSX.utils.sheet_to_json(worksheet);
+
+        //             var container = document.getElementById("table");
+        //             container.innerHTML = XLSX.utils.sheet_to_html(worksheet);
+
+        //             console.log("json...", json);
+        //             this.data = json;
+        //         }
+        //         reader.readAsArrayBuffer(file)
+        // }
   },
   created() {
         this.getExam()
@@ -114,6 +146,7 @@ export default {
         })
         // console.log(this.end_time)
   },
+
 };
 </script>
 <style scoped lang="scss">
