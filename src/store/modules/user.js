@@ -1,6 +1,7 @@
 import { login, logout, userInfoss, getInfo, getViewAuthority } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import { User_id } from '@/api/userDisplay'
 
 const state = {
   token: getToken(),
@@ -8,7 +9,8 @@ const state = {
   avatar: '',
   introduction: '',
   roles: [],
-  viewAuthority: []
+  viewAuthority: [],
+  avatarId:""
 }
 
 const mutations = {
@@ -23,12 +25,16 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+    
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
   },
   SET_VIEWAUTHORITY: (state, viewAuthority) => {
     state.viewAuthority = viewAuthority;
+  },
+  AVATAR_id: (state,id) => {
+    state.avatarId = id;
   }
 }
 
@@ -56,14 +62,22 @@ const actions = {
     let userInfo = await getInfo();
     console.log('userInfo...', userInfo);
     commit('SET_NAME', userInfo.data.user_name)
-    commit('SET_AVATAR', userInfo.data.avatar || 'https://jasonandjay.com/favicon.ico')
-
+    commit('SET_AVATAR', userInfo.data.avatar)
+    commit('AVATAR_id',userInfo.data.user_id)
     // 2. 获取用户视图权限信息
     let viewAuthority = await getViewAuthority();
     console.log('viewAuthority...', viewAuthority);
     commit('SET_VIEWAUTHORITY', viewAuthority.data);
 
     return viewAuthority.data;
+  },
+  async setAiatveId({state},payload){
+    let data = {}
+    data.user_id = state.avatarId;
+    data.avatar = payload;
+    let res = await User_id(data);
+    await getInfo()
+    console.log(res);
   },
   async userInfoss() {
     const res = await userInfoss()

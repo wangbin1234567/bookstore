@@ -42,3 +42,10 @@ export function view_authority(){
     })
 }
 
+export function User_id(data){
+    return request({
+        url:"/user/user",
+        method: "put",
+        data
+    })
+}

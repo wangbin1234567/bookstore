@@ -83,59 +83,59 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/grades',
-    component: Layout,
-    redirect: '/grades/grade',
-    name: 'grades',
-    meta: {
-      title: '班级管理',
-      icon: 'tree-table'
-    },
-    children: [
-      {
-        path: 'grade',
-        component: () => import('@/views/grades/grade'),
-        name: 'grade',
-        meta: { title: '班级管理' }
-      },
-      {
-        path: 'room',
-        // component: () => import('@/views/excel/select-excel'),
-        name: 'room',
-        meta: { title: '教室管理' }
-      },
-      {
-        path: 'student',
-        // component: () => import('@/views/excel/merge-header'),
-        name: 'student',
-        meta: { title: '学生管理' }
-      }
-    ]
-  },
+  // {
+  //   path: '/grades',
+  //   component: Layout,
+  //   redirect: '/grades/grade',
+  //   name: 'grades',
+  //   meta: {
+  //     title: '班级管理',
+  //     icon: 'tree-table'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'grade',
+  //       component: () => import('@/views/grades/grade'),
+  //       name: 'grade',
+  //       meta: { title: '班级管理' }
+  //     },
+  //     {
+  //       path: 'room',
+  //       // component: () => import('@/views/excel/select-excel'),
+  //       name: 'room',
+  //       meta: { title: '教室管理' }
+  //     },
+  //     {
+  //       path: 'student',
+  //       // component: () => import('@/views/excel/merge-header'),
+  //       name: 'student',
+  //       meta: { title: '学生管理' }
+  //     }
+  //   ]
+  // },
   
-  {
-    path: '/management',
-    component: Layout,
-    redirect: '/management/Add',
-    // alwaysShow: true,
-    name: 'Management',
-    meta: { title: '用户管理', icon: 'user' },
-    children: [
-      {
-        path: 'Adduser',
-        component: () => import('@/views/management/add_user'),
-        name: 'Add',
-        meta: { title: '添加用户' }
-      },
-      {
-        path: 'listUser',
-        component: () => import('@/views/management/list-user'),
-        name: 'List',
-        meta: { title: '用户展示' }
-      }
-    ]
-  },
+  // {
+  //   path: '/management',
+  //   component: Layout,
+  //   redirect: '/management/Add',
+  //   // alwaysShow: true,
+  //   name: 'Management',
+  //   meta: { title: '用户管理', icon: 'user' },
+  //   children: [
+  //     {
+  //       path: 'Adduser',
+  //       component: () => import('@/views/management/add_user'),
+  //       name: 'Add',
+  //       meta: { title: '添加用户' }
+  //     },
+  //     {
+  //       path: 'listUser',
+  //       component: () => import('@/views/management/list-user'),
+  //       name: 'List',
+  //       meta: { title: '用户展示' }
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/questions',
   //   component: Layout,
@@ -642,13 +642,13 @@ export const authorityRoutes = [
     redirect: '/management/Add',
     // alwaysShow: true,
     name: 'Management',
-    meta: { title: '用户管理', icon: 'user' },
+    meta: { title: 'management', icon: 'user' },
     children: [
       {
         path: 'Adduser',
         component: () => import('@/views/management/add_user'),
         name: 'Add',
-        meta: { title: '添加用户',view_id: "main-addUser" }
+        meta: { title: 'add',view_id: "main-addUser" }
       },
       {
         path: 'listUser',
@@ -682,7 +682,6 @@ export const authorityRoutes = [
       component: () => import('@/views/examination/detailTest'),
       hidden: true,
       meta: { title: '' ,view_id: "main-examinationPapersssss"},
-      
     },
     {
       path: 'createTest',
@@ -749,7 +748,7 @@ export const authorityRoutes = [
         component: () => import('@/views/paper/detail'),
         hidden:true,
         meta: { view_id: "main-examinationPapers"}
-      }
+      },
     ]
   }
 ]

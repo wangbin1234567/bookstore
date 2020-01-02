@@ -16,7 +16,7 @@
       :key="imagecropperKey"
       :width="300"
       :height="300"
-      url="https://httpbin.org/post"
+      url="//service.jasonandjay.com/upload"
       lang-type="en"
       @close="close"
       @crop-upload-success="cropSuccess"
@@ -27,7 +27,7 @@
 <script>
 import ImageCropper from '@/components/ImageCropper'
 import PanThumb from '@/components/PanThumb'
-
+import { mapActions } from 'vuex'
 export default {
   name: 'AvatarUploadDemo',
   components: { ImageCropper, PanThumb },
@@ -35,14 +35,21 @@ export default {
     return {
       imagecropperShow: false,
       imagecropperKey: 0,
-      image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
+      image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191' 
     }
   },
   methods: {
+    ...mapActions({
+      setAiatveId: "user/SET_AVATAR"
+    }),
+    // ...mapState({
+    //   avatarId: state => state.user.avatarId
+    // }),
     cropSuccess(resData) {
       this.imagecropperShow = false
       this.imagecropperKey = this.imagecropperKey + 1
-      this.image = resData.files.avatar
+      this.setAiatveId(resData[0].path)
+      this.image = resData[0].path
     },
     close() {
       this.imagecropperShow = false

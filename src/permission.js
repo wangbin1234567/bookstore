@@ -28,6 +28,8 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     } else {
       // determine whether the user has obtained his permission roles through getInfo
+
+      //获取用户视图权限
       const hasViewAuthority = store.state.user.viewAuthority && store.state.user.viewAuthority.length > 0
       if (hasViewAuthority) {
         next()
@@ -35,12 +37,18 @@ router.beforeEach(async(to, from, next) => {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
+
+          //获取用户信息  试图权限
           const viewAuthority = await store.dispatch('user/getInfo')
 
           // generate accessible routes map based on roles
+
+          //筛选试图权限
           const accessRoutes = await store.dispatch('permission/generateRoutes', viewAuthority)
 
           // dynamically add accessible routes
+
+          //控制试图渲染
           router.addRoutes(accessRoutes)
 
           // hack method to ensure that addRoutes is complete

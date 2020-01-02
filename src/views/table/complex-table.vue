@@ -35,20 +35,12 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-<<<<<<< HEAD
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
-=======
-      <el-table-column :label="$t('table.id')" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
->>>>>>> c656f2ed00a25643bcc00310fe3d2b51c0341fdb
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-<<<<<<< HEAD
       <el-table-column label="Date" width="150px" align="center">
-=======
-      <el-table-column :label="$t('table.date')" width="150px" align="center">
->>>>>>> c656f2ed00a25643bcc00310fe3d2b51c0341fdb
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -59,33 +51,19 @@
           <el-tag>{{ row.type | typeFilter }}</el-tag>
         </template>
       </el-table-column>
-<<<<<<< HEAD
       <el-table-column label="Author" width="110px" align="center">
-=======
-      <el-table-column :label="$t('table.author')" width="110px" align="center">
->>>>>>> c656f2ed00a25643bcc00310fe3d2b51c0341fdb
         <template slot-scope="{row}">
           <span>{{ row.author }}</span>
         </template>
       </el-table-column>
-<<<<<<< HEAD
       <el-table-column v-if="showReviewer" label="Reviewer" width="110px" align="center">
-=======
-      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
->>>>>>> c656f2ed00a25643bcc00310fe3d2b51c0341fdb
         <template slot-scope="{row}">
           <span style="color:red;">{{ row.reviewer }}</span>
         </template>
       </el-table-column>
-<<<<<<< HEAD
       <el-table-column label="Imp" width="80px">
         <template slot-scope="{row}">
           <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-=======
-      <el-table-column :label="$t('table.importance')" width="80px">
-        <template slot-scope="{row}">
-          <svg-icon v-for="n in +row.importance" :key="n" icon-class="star" class="meta-item__icon" />
->>>>>>> c656f2ed00a25643bcc00310fe3d2b51c0341fdb
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.readings')" align="center" width="95">

@@ -35,11 +35,11 @@
         <el-table
           :data="identityList.slice((currentPage-1)*pagesize,currentPage*pagesize)"
           stripe
-          style="width: 100%;">
+          style="width: 100%">
           <el-table-column
             prop="identity_text"
             label="身份名称"
-            width="1400">
+            width="1200">
           </el-table-column>
         </el-table>
         <el-pagination @current-change = "current_change"
